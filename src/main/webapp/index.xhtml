@@ -8,38 +8,7 @@
     <h:body>
         <h1>Log in or create a new account</h1>
         <h:outputLabel value="#{client.init()}"/>
-        <h:form>
-            <h3>Log in</h3>
-            <p>
-                <h:outputLabel for="usename" value ="username: "/>
-                <h:inputText id ="username" value="#{client.username}"/>
-                <h:outputLabel for ="password" value ="password: "/>
-                <h:inputText id ="password" value="#{client.password}"/>
-            </p>
-            <p>
-                <h:commandButton value ="Log in" action ="#{client.login()}"/>
-            </p>
-            <hr/>
-        </h:form>
-        <h:form>
-            <h3>New account</h3>
-            <p>
-                <h:outputLabel for="usename" value ="username: "/>
-                <h:inputText id ="username" value="#{client.username}"/>
-                <h:outputLabel for ="password" value ="password: "/>
-                <h:inputText id ="password" value="#{client.password}"/>
-                <h:outputLabel for ="balance" value ="balance: "/>
-                <h:inputText id ="balance" value="#{client.balance}"/>
-            </p>
-            <p>
-                <h:commandButton value ="new Account" action ="#{client.newAccount()}"/>
-            </p>
-            
-        </h:form>
-        
-        <p>
-            <h:outputLabel for ="res" value="#{client.result}"/>
-        </p>
+       
     </h:body>
 </html>
 
