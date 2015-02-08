@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /*availability_id BIGINT PRIMARY KEY,
 person_id BIGINT REFERENCES person,
@@ -19,7 +20,7 @@ to_date DATE*/
 
 /**
  *
- * @author Quasar
+ * @author Yau
  */
 @Entity
 public class Availability implements Serializable {
@@ -30,11 +31,8 @@ public class Availability implements Serializable {
     
     
    @OneToOne()
-   
     private Person person_id;
-    
     private Date from_date;
-    
     private Date to_date;
 
     public Availability() {
@@ -47,11 +45,11 @@ public class Availability implements Serializable {
     this.to_date = to_date;
 }
     
-    public Long getPerson_id() {
+    public Person getPerson_id() {
         return person_id;
     }
 
-    public void setPerson_id(Long person_id) {
+    public void setPerson_id(Person person_id) {
         this.person_id = person_id;
     }
 
