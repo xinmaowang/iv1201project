@@ -35,10 +35,10 @@ public class Competence_Profile implements Serializable {
     private Long competence_profile_id;
     private Person person_id;
     private Competence competence_id;
-    private int Years_of_experience;
+    private double Years_of_experience;
             
     public Competence_Profile(Long competence_profile_id, Person person_id, 
-            Competence competence_id, int Years_of_experience) {
+            Competence competence_id, double Years_of_experience) {
     }
    
 
