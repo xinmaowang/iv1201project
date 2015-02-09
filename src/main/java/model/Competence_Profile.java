@@ -31,12 +31,20 @@ public class Competence_Profile implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long competence_profile;
     
+    
+   
     @OneToOne
-    private Long competence_profile_id;
     private Person person_id;
+    
+    @OneToOne
     private Competence competence_id;
-    private double Years_of_experience;
-            
+    
+    private Double Years_of_experience;
+    
+    public Competence_Profile(){
+        
+    }
+    
     public Competence_Profile(Long competence_profile_id, Person person_id, 
             Competence competence_id, double Years_of_experience) {
     }

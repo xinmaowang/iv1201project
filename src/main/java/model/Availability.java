@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /*availability_id BIGINT PRIMARY KEY,
 person_id BIGINT REFERENCES person,
@@ -32,8 +34,11 @@ public class Availability implements Serializable {
     
    @OneToOne()
     private Person person_id;
-    private Date from_date;
-    private Date to_date;
+   
+   @Temporal(TemporalType.TIMESTAMP)
+   private java.util.Date from_date;
+    @Temporal(TemporalType.TIMESTAMP) 
+   private java.util.Date to_date;
 
     public Availability() {
         
