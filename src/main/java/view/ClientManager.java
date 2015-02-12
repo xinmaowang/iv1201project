@@ -23,14 +23,12 @@ public class ClientManager implements Serializable {
     private String surname;
     private String ssn;
     private String email;
-    private boolean reg = false;
+    private boolean succ = false;
 
-    public void setReg(boolean reg) {
-        this.reg = reg;
-    }
 
-    public boolean getReg() {
-        return reg;
+
+    public boolean getSucc() {
+        return succ;
     }
 
     public String getUsername() {
@@ -138,16 +136,15 @@ public class ClientManager implements Serializable {
         controller.init();
     }
     
-    public void goToReg(){
-        reg = true;
-    }
     
     public String login() {
         try {
             startConversation();
             transactionFailure = null;
-            reg = false;
-            controller.login(username, password);
+            succ = false;
+            if(controller.login(username, password).equals("success")){
+                succ = true;
+            }
             
 
         } catch (Exception e) {
@@ -155,6 +152,23 @@ public class ClientManager implements Serializable {
         }
         return jsf22Bugfix();
     }
+    
+        public String newAccount() {
+        try {
+            startConversation();
+            transactionFailure = null;
+            succ = false;
+            if(controller.newAccount(name, surname, username, password, ssn, email).equals("success")){
+                succ = true;
+            }
+            
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
+    }
+
 
  
 }

@@ -8,8 +8,8 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <if>#{client.reg}</if>
-            <to-view-id>/registering.xhtml</to-view-id>
+            <if>#{client.succ}</if>
+            <to-view-id>/client.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

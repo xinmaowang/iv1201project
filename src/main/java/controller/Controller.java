@@ -35,19 +35,21 @@ public class Controller {
     
     
       public String login(String username, String password) {
-        Person account = em.find(Person.class, username);
+        Person account = em.find(Person.class, new Long(1));
         if (account == null) {
             //throw new EntityNotFoundException("No such account");
             return "No such account";
         }
-
-        
-
         if (!account.getPassword().equals(password)) {
             //throw new EntityNotFoundException("Wrong username or password");
             return "Wrong username or password";
         }
         return "success";
     }
+      
+      public String newAccount(String name, String surname, String username, String password, String ssn, String email){
+          em.persist(new Person(new Long(2), name, surname,ssn, email,password, username));
+          return "success";
+      }
    
 }
