@@ -7,7 +7,7 @@
         <link href = "style.css" rel="stylesheet"></link>
     </h:head>
     <h:body>
-        <h1>Log in or create a new account</h1>
+        <h1>Company Web</h1>
         <h:outputLabel value="#{client.init()}"/>
         <h:form>
             <h3>Log in</h3>
@@ -28,31 +28,75 @@
                         <h:inputText id ="password" value="#{client.password}"/>
                     </td>
                 </tr>
-            </table>            <p>
-                <h:commandButton value ="Log in" action ="#{client.login()}"/>
-            </p>
+                <tr>
+                    <td></td>
+                    <td>
+                        <h:commandButton value ="Log in" action ="#{client.login()}"/>
+                    </td>
+                </tr>
+                    
+            </table>
             <hr/>
         </h:form>
         <h:form>
-            <h3>Create account</h3>
-            <p>
-                <h:outputLabel for="username" value ="Username: "/>
-                <h:inputText id ="username" value="#{client.username}"/>
-                <h:outputLabel for ="password" value ="Password: "/>
-                <h:inputSecret id ="password" value="#{client.password}"/>
-                  <h:outputLabel for ="ssn" value ="ssn: "/>
-                  <h:inputText id ="ssn" value="#{client.ssn}"/>
-                  <h:outputLabel for ="name" value ="Name: "/>
-                  <h:inputText id ="name" value="#{client.name}"/>
-                  <h:outputLabel for ="surname" value ="Surname: "/>
-                  <h:inputText id ="surname" value="#{client.surname}"/>
-                  <h:outputLabel for ="email" value ="Email: "/>
-                  <h:inputText id ="email" value="#{client.email}"/>
-            </p>
-            <p>
-                <h:commandButton value ="Create account" action ="#{client.newAccount()}"/>
-            </p>
-            <hr/>
+            <h3>Create New Account</h3>
+            <table class="form">
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for="username" value ="Username: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputText id ="username" value="#{client.username}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for ="password" value ="Password: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputSecret id ="password" value="#{client.password}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for ="ssn" value ="SSN: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputText id ="ssn" value="#{client.ssn}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for ="name" value ="Name: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputText id ="name" value="#{client.name}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for ="surname" value ="Surname: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputText id ="surname" value="#{client.surname}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for ="email" value ="Email: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputText id ="email" value="#{client.email}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <h:commandButton value ="Create" action ="#{client.newAccount()}"/>
+                    </td>
+                </tr>
+            </table>
+             <hr/>
         </h:form>
        
     </h:body>
