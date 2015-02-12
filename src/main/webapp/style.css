@@ -35,7 +35,7 @@ h1, h2 {
 }
 h3 {
         
-    font-family:"Crimson Text", "Lucida Sans Unicode","Times New Roman", serif;
+    font-family: Papyrus, fantasy;
 }
 h1 {
     font-size: 36px;
@@ -55,7 +55,7 @@ table.form, table.form th, table.form td {
 }
 table.form th {
     background-color: red;
-    text: bold;
+    font-weight: bold;
     font-size: 18px;
 }
 table.form th, table.form td {
