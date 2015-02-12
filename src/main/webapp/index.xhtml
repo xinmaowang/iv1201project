@@ -4,25 +4,37 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Log in or register </title>
+        <link href = "style.css" rel="stylesheet"></link>
     </h:head>
     <h:body>
         <h1>Log in or create a new account</h1>
         <h:outputLabel value="#{client.init()}"/>
         <h:form>
             <h3>Log in</h3>
-            <p>
-                <h:outputLabel for="username" value ="username: "/>
-                <h:inputText id ="username" value="#{client.username}"/>
-                <h:outputLabel for ="password" value ="password: "/>
-                <h:inputSecret id ="password" value="#{client.password}"/>
-            </p>
-            <p>
+            <table class="form">
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for="username" value ="Username: "/>
+                    </td>
+                    <td class="right">
+                        <h:inputText id ="username" value="#{client.username}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left">
+                        <h:outputLabel for ="password" value ="Password: "/>
+                    </td>
+                    <td class="right"> 
+                        <h:inputText id ="password" value="#{client.password}"/>
+                    </td>
+                </tr>
+            </table>            <p>
                 <h:commandButton value ="Log in" action ="#{client.login()}"/>
             </p>
             <hr/>
         </h:form>
         <h:form>
-            <h3>New account</h3>
+            <h3>Create account</h3>
             <p>
                 <h:outputLabel for="username" value ="username: "/>
                 <h:inputText id ="username" value="#{client.username}"/>
@@ -38,7 +50,7 @@
                   <h:inputText id ="email" value="#{client.email}"/>
             </p>
             <p>
-                <h:commandButton value ="New account" action ="#{client.newAccount()}"/>
+                <h:commandButton value ="Create account" action ="#{client.newAccount()}"/>
             </p>
             <hr/>
         </h:form>
