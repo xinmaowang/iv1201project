@@ -8,17 +8,24 @@ and open the template in the editor.
     Author     : Yared
 */
 
+
 html { 
     background-color: #C8C8C8; 
     height: 100%;
 }
 body { 
-    height: auto;
+    min-height: 100%;
     width: 75%;
     padding: 20px;
-    margin: -10px auto;
+    margin: -2px auto;
     background-color: #F8F8F8;
+    position: relative; 
+    top: 0; 
+    bottom: 0; 
+    right: 0; 
+    left: 0; 
 }
+
 h1, h2, h3 {
     color: #282828;
     font-weight: bold;
