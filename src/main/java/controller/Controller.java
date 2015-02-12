@@ -24,11 +24,13 @@ public class Controller {
     private EntityManager em;
 
     public void init(){
+        if(em.find(Role.class, new Long(1)) == null){
         Role role = new Role(new Long(1),"BOSS");
         Person person = new Person(new Long(1),"Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
         person.setRole_id(role);
         em.persist(role);
         em.persist(person);
+        }
     }
     
     
