@@ -30,5 +30,22 @@ public class Controller {
         em.persist(role);
         em.persist(person);
     }
+    
+    
+      public String login(String username, String password) {
+        Person account = em.find(Person.class, username);
+        if (account == null) {
+            //throw new EntityNotFoundException("No such account");
+            return "No such account";
+        }
+
+        
+
+        if (!account.getPassword().equals(password)) {
+            //throw new EntityNotFoundException("Wrong username or password");
+            return "Wrong username or password";
+        }
+        return "success";
+    }
    
 }

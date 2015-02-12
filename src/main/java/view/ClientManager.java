@@ -128,6 +128,21 @@ public class ClientManager implements Serializable {
     public void init(){
         controller.init();
     }
+    
+    
+    public String login() {
+        try {
+            startConversation();
+            transactionFailure = null;
+          
+            controller.login(username, password);
+            
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
+    }
 
  
 }
