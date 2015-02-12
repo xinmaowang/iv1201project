@@ -23,6 +23,15 @@ public class ClientManager implements Serializable {
     private String surname;
     private String ssn;
     private String email;
+    private boolean reg = false;
+
+    public void setReg(boolean reg) {
+        this.reg = reg;
+    }
+
+    public boolean getReg() {
+        return reg;
+    }
 
     public String getUsername() {
         return username;
@@ -129,12 +138,15 @@ public class ClientManager implements Serializable {
         controller.init();
     }
     
+    public void goToReg(){
+        reg = true;
+    }
     
     public String login() {
         try {
             startConversation();
             transactionFailure = null;
-          
+            reg = false;
             controller.login(username, password);
             
 
