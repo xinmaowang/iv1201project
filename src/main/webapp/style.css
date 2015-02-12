@@ -30,14 +30,21 @@ h1, h2, h3 {
     color: #282828;
     font-weight: bold;
 }
-h1 {
-    font-size: 24px;
-}
-h2 {
-    font-size: 18px;
+h1, h2 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 h3 {
-    font-size: 14;
+        
+    font-family:"Crimson Text", "Lucida Sans Unicode","Times New Roman", serif;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 26px;
+}
+h3 {
+    font-size: 18px;
 }
 p {
     font: 12px arial;
