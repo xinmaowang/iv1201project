@@ -5,6 +5,8 @@
  */
 package model;
 
+import model.Interface.personInterface;
+
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,7 @@ import javax.persistence.OneToOne;
  * @author Xinmao
  */
 @Entity
-public class Person implements Serializable {
+public class Person implements Serializable,personInterface {
     private static final long serialVersionUID = 1L;
  
     
@@ -70,6 +72,7 @@ public class Person implements Serializable {
         this.role_id = role_id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -78,6 +81,7 @@ public class Person implements Serializable {
         this.name = name;
     }
 
+    @Override
     public String getSurname() {
         return surname;
     }
@@ -86,6 +90,7 @@ public class Person implements Serializable {
         this.surname = surname;
     }
 
+    @Override
     public String getSsn() {
         return ssn;
     }
@@ -94,6 +99,7 @@ public class Person implements Serializable {
         this.ssn = ssn;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
