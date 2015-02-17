@@ -2,6 +2,7 @@ package controller;
 
 import model.Person;
 import model.Role;
+import model.Account;
 import java.util.Arrays;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -24,23 +25,24 @@ public class Controller {
     private EntityManager em;
 
     public void init(){
-        if(em.find(Role.class, new Long(1)) == null){
-        Role role = new Role(new Long(1),"BOSS");
-        Person person = new Person(new Long(1),"Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
+        if(em.find(Account.class, "xinmao") == null){
+        Role role = new Role("BOSS");
+        Account account = new Account("xinmao");
+        Person person = new Person("Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
         person.setRole_id(role);
-        em.persist(role);
-        em.persist(person);
+        account.setPerson_id(person);
+        em.persist(account);
         }
     }
     
     
       public String login(String username, String password) {
-        Person account = em.find(Person.class, new Long(1));
+        Account account = em.find(Account.class, username);
         if (account == null) {
             //throw new EntityNotFoundException("No such account");
             return "No such account";
         }
-        if (!account.getPassword().equals(password)) {
+        if (!account.getPerson_id().getPassword().equals(password)) {
             //throw new EntityNotFoundException("Wrong username or password");
             return "Wrong username or password";
         }
@@ -48,7 +50,10 @@ public class Controller {
     }
       
       public String newAccount(String name, String surname, String username, String password, String ssn, String email){
-          em.persist(new Person(new Long(2), name, surname,ssn, email,password, username));
+          Account account = new Account(username);
+          Person person = new Person(name, surname,ssn, email,password, username);
+          account.setPerson_id(person);
+          em.persist(account);
           return "success";
       }
    

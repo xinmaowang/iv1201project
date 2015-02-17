@@ -7,6 +7,7 @@ package model;
 
 import model.Person;
 import java.io.Serializable;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +32,9 @@ public class Role implements Serializable {
         
     }
   
-    public Role(Long role_id, String name){
-        this.role_id = role_id;
+    public Role(String name){
+        Random rand = new Random();
+        role_id = rand.nextLong()+1;
         this.name = name;
     }
    

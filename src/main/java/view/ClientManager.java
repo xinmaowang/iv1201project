@@ -23,7 +23,7 @@ public class ClientManager implements Serializable {
     private String surname;
     private String ssn;
     private String email;
-    private boolean succ = false;
+    private boolean succ = true;
 
 
 
@@ -159,7 +159,7 @@ public class ClientManager implements Serializable {
             transactionFailure = null;
             succ = false;
             if(controller.newAccount(name, surname, username, password, ssn, email).equals("success")){
-                succ = true;
+                //succ = true;
             }
             
 

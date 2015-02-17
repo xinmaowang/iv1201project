@@ -8,6 +8,8 @@ package model;
 import model.Interface.personInterface;
 
 import java.io.Serializable;
+import java.util.Random;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +32,7 @@ public class Person implements Serializable,personInterface {
     @Column(name="ID")
     private Long id;
     
-    @OneToOne()
+    @OneToOne(cascade={CascadeType.PERSIST})
     @JoinColumn(name = "ROLE_ID")
     private Role role_id;
      
@@ -46,8 +48,9 @@ public class Person implements Serializable,personInterface {
         
     }
     
-    public Person(Long id, String name, String surname, String ssn, String email, String password, String username){
-        this.id = id;
+    public Person(String name, String surname, String ssn, String email, String password, String username){
+        Random rand = new Random();
+        id = rand.nextLong()+1;
         this.name = name;
         this.surname = surname;
         this.ssn = ssn;

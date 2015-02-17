@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,13 +23,23 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String username;
+    
+    @OneToOne(cascade={CascadeType.ALL})
+    private Person person_id;
+    
+    public Account(){ 
+        
+    }
 
     public Account(String username) {
         this.username = username;
     }
     
-    @OneToOne
-    private Person person_id;
+    
+
+    public void setPerson_id(Person person_id) {
+        this.person_id = person_id;
+    }
 
     public Person getPerson_id() {
         return person_id;
