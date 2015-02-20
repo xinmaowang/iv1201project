@@ -23,7 +23,7 @@ public class ClientManager implements Serializable {
     private String surname;
     private String ssn;
     private String email;
-    private boolean succ = true;
+    private boolean succ = false;
 
 
 
