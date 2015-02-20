@@ -66,4 +66,5 @@ table.form th, table.form td {
 }
 .left {
     float: left;
+    font: Arial;
 }
