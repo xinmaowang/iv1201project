@@ -23,12 +23,5 @@
         </navigation-case>
     </navigation-rule>
     
-     <navigation-rule>
-        <from-view-id>/client.xhtml</from-view-id>
-        <navigation-case>
-            <if>#{!client.succ}</if>
-            <to-view-id>/index.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
 
 </faces-config>

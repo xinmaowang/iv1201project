@@ -22,25 +22,7 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     <security-constraint>
-        <display-name>userConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>user</web-resource-name>
-            <description/>
-            <url-pattern>/faces/user/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>user</role-name>
-        </auth-constraint>
-        <user-data-constraint>
-            <description/>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>adminConstraint</display-name>
+        <display-name>AdminConstraint</display-name>
         <web-resource-collection>
             <web-resource-name>admin</web-resource-name>
             <description/>
@@ -57,19 +39,38 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>UserConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>user</web-resource-name>
+            <description/>
+            <url-pattern>/user/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>user</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
     <login-config>
+        <auth-method>FORM</auth-method>
         <realm-name>jdbc-realm</realm-name>
         <form-login-config>
             <form-login-page>/faces/index.xhtml</form-login-page>
-            <form-error-page>/faces/loggingerror.xhtml</form-error-page>
+            <form-error-page>/facec/loggingerror.xhtml</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
         <description/>
-        <role-name>user</role-name>
+        <role-name>admin</role-name>
     </security-role>
     <security-role>
         <description/>
-        <role-name>admin</role-name>
+        <role-name>user</role-name>
     </security-role>
 </web-app>

@@ -1,6 +1,7 @@
 package controller;
 
 import model.Person;
+
 import model.Role;
 import model.Account;
 import java.util.Arrays;
@@ -28,10 +29,11 @@ public class Controller {
         if(em.find(Account.class, "xinmao") == null){
         Role role = new Role("BOSS");
         Account account = new Account("xinmao");
+       
         Person person = new Person("Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
         person.setRole_id(role);
         account.setPerson_id(person);
-        em.persist(account);
+        em.persist(person);
         }
     }
     
