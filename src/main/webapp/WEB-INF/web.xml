@@ -30,5 +30,18 @@
         <error-code>403</error-code>
         <location>/faces/loginerror.xhtml</location>
     </error-page>
-
+    <security-constraint>
+        <display-name>ssl</display-name>
+        <web-resource-collection>
+            <web-resource-name>ssl</web-resource-name>
+            <description/>
+            <url-pattern>/faces/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 </web-app>

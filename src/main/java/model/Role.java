@@ -34,7 +34,7 @@ public class Role implements Serializable {
   
     public Role(String name){
         Random rand = new Random();
-        role_id = rand.nextLong()+1;
+        role_id = new Long(rand.nextInt(Integer.MAX_VALUE)+ 1);
         this.name = name;
     }
    
