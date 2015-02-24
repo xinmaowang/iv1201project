@@ -15,7 +15,7 @@ html {
 }
 body { 
     min-height: 100%;
-    width: 75%;
+    width: 70%;
     padding: 20px;
     margin: -2px auto;
     background-color: #F8F8F8;
@@ -67,4 +67,24 @@ table.form th, table.form td {
 .left {
     float: left;
     font: Arial;
+}
+
+/* Header */
+#wheader {
+    background-color: white;
+    margin: -20px;
+    padding: 15px 5px 30px;
+    text-align: center;
+}
+div.logo {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 48px;
+    text-shadow: 11px 11px 11px #fff, 13px 13px 1px yellow;
+    text-align: center;
+}
+
+/* Language */
+div.right {
+    position: absolute;
+    right: 40px;
 }
