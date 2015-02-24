@@ -3,6 +3,7 @@ package controller;
 import model.Person;
 
 import model.Role;
+import model.Users;
 import model.Account;
 import java.util.Arrays;
 import java.util.List;
@@ -25,20 +26,21 @@ public class Controller {
     @PersistenceContext(unitName = "group12_IV1201Project_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
-    public void init(){
-        if(em.find(Account.class, "xinmao") == null){
-        Role role = new Role("BOSS");
-        Account account = new Account("xinmao");
-       
-        Person person = new Person("Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
-        person.setRole_id(role);
-        account.setPerson_id(person);
-        em.persist(person);
+    public void init() {
+        if (em.find(Account.class, "xinmao") == null) {
+            Users user = new Users("user","xinmao");
+            em.persist(user);
+            
+            Role role = new Role("BOSS");
+            Account account = new Account("xinmao");
+            Person person = new Person("Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
+            person.setRole_id(role);
+            account.setPerson_id(person);
+            em.persist(account);
         }
     }
-    
-    
-      public String login(String username, String password) {
+
+    public String login(String username, String password) {
         Account account = em.find(Account.class, username);
         if (account == null) {
             //throw new EntityNotFoundException("No such account");
@@ -50,13 +52,13 @@ public class Controller {
         }
         return "success";
     }
-      
-      public String newAccount(String name, String surname, String username, String password, String ssn, String email){
-          Account account = new Account(username);
-          Person person = new Person(name, surname,ssn, email,password, username);
-          account.setPerson_id(person);
-          em.persist(account);
-          return "success";
-      }
-   
+
+    public String newAccount(String name, String surname, String username, String password, String ssn, String email) {
+        Account account = new Account(username);
+        Person person = new Person(name, surname, ssn, email, password, username);
+        account.setPerson_id(person);
+        em.persist(account);
+        return "success";
+    }
+
 }

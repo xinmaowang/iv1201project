@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 12, 2015, 4:00:07 PM
+    Author     : Yared
+*/
+
+
+html { 
+    background-color: #C8C8C8; 
+    height: 100%;
+}
+body { 
+    min-height: 100%;
+    width: 70%;
+    padding: 20px;
+    margin: -2px auto;
+    background-color: #F8F8F8;
+    position: relative; 
+    top: 0; 
+    bottom: 0; 
+    right: 0; 
+    left: 0; 
+}
+
+h1, h2, h3 {
+    color: #282828;
+    font-weight: bold;
+}
+h1, h2 {
+    font-family: "Arial", cursive, sans-serif;
+}
+h3 {
+        
+    font-family: Arial, fantasy;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 26px;
+}
+h3 {
+    font-size: 18px;
+}
+p {
+    font: 12px arial;
+}
+table.form, table.form th, table.form td {
+    border: none;
+    border-collapse: collapse;
+}
+table.form th {
+    background-color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+table.form th, table.form td {
+    padding: 5px;
+}
+.right {
+    float: right;
+}
+.left {
+    float: left;
+    font: Arial;
+}
+
+/* Header */
+#wheader {
+    background-color: white;
+    margin: -20px;
+    padding: 15px 5px 30px;
+    text-align: center;
+}
+div.logo {
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 48px;
+    text-shadow: 11px 11px 11px #fff, 13px 13px 1px yellow;
+    text-align: center;
+}
+
+/* Language */
+div.right {
+    position: absolute;
+    right: 40px;
+}
