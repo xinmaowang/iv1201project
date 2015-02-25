@@ -4,13 +4,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'></link>
-    <link href = "style.css" rel="stylesheet"></link>
-    
-    <div id="wheader">
+    <div id="header_bg">
     <div class="logo">Company Name</div>
         
-        <div class ="right">
+        <div class ="lang">
             <h:outputLabel value="#{client.init()}"/>
             <h:form>
                 <h:commandLink action="#{locale.changeLocale}">
@@ -24,7 +21,7 @@
                 </h:commandLink>
             </h:form>
         </div>
+        <hr class="header"></hr>
     </div>
-    
 </html>
 
