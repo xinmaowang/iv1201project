@@ -50,7 +50,7 @@ public class Person implements Serializable,personInterface {
     
     public Person(String name, String surname, String ssn, String email, String password, String username){
         Random rand = new Random();
-        id = rand.nextLong()+1;
+        id = new Long(rand.nextInt(Integer.MAX_VALUE)+ 1);
         this.name = name;
         this.surname = surname;
         this.ssn = ssn;

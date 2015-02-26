@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'></link>
     <link href='http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,500italic,300italic,400' rel='stylesheet' type='text/css'></link>
     <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'></link>
@@ -14,122 +14,191 @@
         <title>Our Company </title>
     </h:head>
 
-<!-- Header -->
+    <!-- Header -->
     <header>
         <div id="header">
-		<ui:insert name="header" >
-		  <ui:include src="/header.xhtml" />
-		</ui:insert>
-	</div>
-    </header>
-<!-- Header Ends -->
-<!-- Main Body -->
-    <main>
-    <h:body>
-        <div id="left_col">
-        <h:form>
-            <table class="form">
-                <th>Log in</th>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for="username" value ="Username: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputText id ="username" value="#{client.username}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for ="password" value ="Password: "/>
-                    </td>
-                    <td class="right"> 
-                        <h:inputSecret id ="password" value="#{client.password}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <h:commandButton value ="Log in" action ="#{client.login()}"/>
-                    </td>
-                </tr>
-                    
-            </table>
- 
-        </h:form>
+            <ui:insert name="header" >
+                <ui:include src="/header.xhtml" />
+            </ui:insert>
         </div>
-        <div id="left_col">
-        <h:form>
-            <table class="form">
-            <th>Create New Account</th>
-            <tr>
-                    <td class="left">
-                        <h:outputLabel for="username" value ="Username: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputText id ="username" value="#{client.username}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for ="password" value ="Password: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputSecret id ="password" value="#{client.password}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for ="ssn" value ="SSN: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputText id ="ssn" value="#{client.ssn}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for ="name" value ="Name: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputText id ="name" value="#{client.name}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for ="surname" value ="Surname: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputText id ="surname" value="#{client.surname}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="left">
-                        <h:outputLabel for ="email" value ="Email: "/>
-                    </td>
-                    <td class="right">
-                        <h:inputText id ="email" value="#{client.email}"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <h:commandButton value ="Create" action ="#{client.newAccount()}"/>
-                    </td>
-                </tr>
-            </table>
-        </h:form>
-        </div>    
-    </h:body>
+    </header>
+    <!-- Header Ends -->
+    <!-- Main Body -->
+    <main>
+        <h:body>
+            <div id="left_col">
+                <h:form>
+                    <table class="form">
+                        <th>Log in</th>
+                        <tr>
+                            <td class="left">
+                                <h:outputLabel for="username" value ="Username: "/>
+                            </td>
+                            <td class="right">
+                                <h:inputText id ="username" value="#{client.username}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <h:outputLabel for ="password" value ="Password: "/>
+                            </td>
+                            <td class="right"> 
+                                <h:inputSecret id ="password" value="#{client.password}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <h:commandButton value ="Log in" action ="#{client.login()}"/>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </h:form>
+            </div>
+
+            <f:view>
+                <div id="left_col">
+                    <h:form id="registration" >
+                        <table class="form">
+                            <th>Create New Account</th>
+                            <tr>
+                                <td class="left">
+                                    <h:outputLabel for="username" value ="Username: "/>
+                                </td>
+                                <td class="right">
+                                    <h:inputText id ="username" value="#{client.username}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <h:outputLabel for ="password" value ="Password: "/>
+                                </td>
+                                <td class="right">
+                                    <h:inputSecret id ="password" value="#{client.password}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <h:outputLabel for ="ssn" value ="SSN: "/>
+                                </td>
+                                <td class="right">
+                                    <h:inputText id ="ssn" value="#{client.ssn}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <h:outputLabel for ="name" value ="Name: "/>
+                                </td>
+                                <td class="right">
+                                    <h:inputText id ="name" value="#{client.name}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <h:outputLabel for ="surname" value ="Surname: "/>
+                                </td>
+                                <td class="right">
+                                    <h:inputText id ="surname" value="#{client.surname}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">
+                                    <h:outputLabel for ="email" value ="Email: "/>
+                                </td>
+                                <td class="right">
+                                    <h:inputText id ="email" value="#{client.email}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <h:commandButton value ="Create" onclick="return checkData()" action ="#{client.newAccount()}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </div>    
+            </f:view>
+
+            <script language="javascript">
+                function checkData() {
+
+                    var validation = true;
+                    var username = document.getElementById("registration:username");
+                    var password = document.getElementById("registration:password");
+                    var ssn = document.getElementById("registration:ssn");
+                    var name = document.getElementById("registration:name");
+                    var surname = document.getElementById("registration:surname");
+                    var email = document.getElementById("registration:email");
+                    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                    var ssnReg = /^\d{10}$/;
+                    var passwordReg = /^[A-Z]\w*\d{1,}$/;
+                    var usernameReg = /^\w*$/;
+                    
+                    if (username.value == "") {
+                        alert("You must enter a username");
+                        validation = false;
+                    }
+                    else if (!usernameReg.test(username.value)){
+                        alert("Invalid username");
+                        validation = false;
+                    }
+                    else if (password.value == "") {
+                        alert("You must enter a password");
+                        validation = false;
+                    }
+                    else if(!passwordReg.test(password.value)){
+                        alert("Invalid password");
+                        validation = false;
+                    }
+                    else if (ssn.value == "") {
+                        alert("You must enter a ssn");
+                        validation = false;
+                    }
+                    else if (!ssnReg.test(ssn.value)){
+                        alert("Invalid ssn");
+                        validation = false;
+                    }
+                    else if (name.value == "") {
+                        alert("You must enter a name");
+                        validation = false;
+                    }
+                    else if (surname.value == "") {
+                        alert("You must enter a surname");
+                        validation = false;
+                    }
+                    else if (email.value == "") {
+                        alert("You must enter a email");
+                        validation = false;
+                    }
+                    else if (!emailReg.test(email.value)){
+                        alert("Invalid email, try again");
+                        validation = false;
+                    }
+
+
+                            return validation;
+                }
+            </script>
+        </h:body>
     </main>
-<!-- Main Body Ends -->
-<!-- Footer -->
+
+
+
+
+
+    <!-- Main Body Ends -->
+    <!-- Footer -->
     <footer>
         <div id="footer">
             <ui:insert name="footer" >
-            <ui:include src="/footer.xhtml" />
+                <ui:include src="/footer.xhtml" />
             </ui:insert>
-	</div>
+        </div>
     </footer>
-<!-- Footer Ends -->    
+    <!-- Footer Ends -->    
 
 </html>
 

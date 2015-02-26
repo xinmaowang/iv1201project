@@ -27,13 +27,11 @@ public class Controller {
     private EntityManager em;
 
     public void init() {
-        if (em.find(Account.class, "xinmao") == null) {
-            Users user = new Users("user","xinmao");
-            em.persist(user);
+        if (em.find(Account.class, "user") == null) {
             
-            Role role = new Role("BOSS");
-            Account account = new Account("xinmao");
-            Person person = new Person("Xinmao", "Wang", "1231", "xinmao@kth.se", "123", "xinmao");
+            Role role = new Role("user");
+            Account account = new Account("user");
+            Person person = new Person("User", "User", "123456789", "user@user.com", "123", "user");
             person.setRole_id(role);
             account.setPerson_id(person);
             em.persist(account);
@@ -54,10 +52,16 @@ public class Controller {
     }
 
     public String newAccount(String name, String surname, String username, String password, String ssn, String email) {
-        Account account = new Account(username);
+        Account account = em.find(Account.class, username);
+        
+        if (account == null){
+        account = new Account(username);    
         Person person = new Person(name, surname, ssn, email, password, username);
+        Role role = em.find(Account.class, "user").getPerson_id().getRole_id();
+        person.setRole_id(role);
         account.setPerson_id(person);
         em.persist(account);
+        }
         return "success";
     }
 
