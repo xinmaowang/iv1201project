@@ -6,6 +6,7 @@
 package model;
 
 import model.Person;
+import model.Interface.roleInterface;
 import java.io.Serializable;
 import java.util.Random;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import javax.persistence.OneToOne;
  * @author Xinmao
  */
 @Entity
-public class Role implements Serializable {
+public class Role implements Serializable, roleInterface{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,6 +49,7 @@ public class Role implements Serializable {
         this.role_id = id;
     }
     
+    @Override
     public String getName(){
         return name;
     }

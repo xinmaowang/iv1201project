@@ -7,6 +7,7 @@ import model.Users;
 import model.Account;
 import java.util.Arrays;
 import java.util.List;
+import model.Interface.roleInterface;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -35,20 +36,27 @@ public class Controller {
             person.setRole_id(role);
             account.setPerson_id(person);
             em.persist(account);
+            
+            role = new Role("admin");
+            account = new Account("admin");
+            person = new Person("Admin", "Admin", "1234567890", "admin@admin.com", "admin", "admin");
+            person.setRole_id(role);
+            account.setPerson_id(person);
+            em.persist(account);
         }
     }
 
-    public String login(String username, String password) {
+    public roleInterface login(String username, String password) {
         Account account = em.find(Account.class, username);
         if (account == null) {
             //throw new EntityNotFoundException("No such account");
-            return "No such account";
+            return null;
         }
         if (!account.getPerson_id().getPassword().equals(password)) {
             //throw new EntityNotFoundException("Wrong username or password");
-            return "Wrong username or password";
+            return null;
         }
-        return "success";
+        return account.getPerson_id().getRole_id();
     }
 
     public String newAccount(String name, String surname, String username, String password, String ssn, String email) {

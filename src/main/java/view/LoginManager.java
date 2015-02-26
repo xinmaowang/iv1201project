@@ -8,10 +8,11 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import model.Interface.roleInterface;
 
 @Named("client")
 @ConversationScoped
-public class ClientManager implements Serializable {
+public class LoginManager implements Serializable {
 
     private static final long serialVersionUID = 16247164405L;
     @EJB
@@ -24,6 +25,16 @@ public class ClientManager implements Serializable {
     private String ssn;
     private String email;
     private boolean succ = false;
+    private boolean newAccount = false;
+    private boolean succAdmin = false;
+
+    public boolean isSuccAdmin() {
+        return succAdmin;
+    }
+    
+    public boolean isNewAccount() {
+        return newAccount;
+    }
 
 
 
@@ -142,9 +153,16 @@ public class ClientManager implements Serializable {
             startConversation();
             transactionFailure = null;
             succ = false;
-            if(controller.login(username, password).equals("success")){
-                succ = true;
-            }
+           roleInterface role = controller.login(username, password);
+           if (role != null){
+               if (role.getName().equals("user")){
+                   succ = true;
+               }
+               else if (role.getName().equals("admin")){
+                   succAdmin = true;
+               }
+               
+           }
             
 
         } catch (Exception e) {
@@ -159,7 +177,7 @@ public class ClientManager implements Serializable {
             transactionFailure = null;
             succ = false;
             if(controller.newAccount(name, surname, username, password, ssn, email).equals("success")){
-                //succ = true;
+                newAccount = true;
             }
             
 

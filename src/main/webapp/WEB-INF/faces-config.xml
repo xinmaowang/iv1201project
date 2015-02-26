@@ -23,5 +23,21 @@
         </navigation-case>
     </navigation-rule>
     
+    
+      <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{client.succAdmin}</if>
+            <to-view-id>/admin/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{client.newAccount}</if>
+            <to-view-id>/success.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>
