@@ -32,7 +32,7 @@
                         <th>Log in</th>
                         <tr>
                             <td class="left">
-                                <h:outputLabel for="username" value ="Username: "/>
+                                <h:outputLabel for="username" value ="#{messages.username}: "/>
                             </td>
                             <td class="right">
                                 <h:inputText id ="username" value="#{client.username}"/>
@@ -40,7 +40,7 @@
                         </tr>
                         <tr>
                             <td class="left">
-                                <h:outputLabel for ="password" value ="Password: "/>
+                                <h:outputLabel for ="password" value ="#{messages.password}: "/>
                             </td>
                             <td class="right"> 
                                 <h:inputSecret id ="password" value="#{client.password}"/>
@@ -49,7 +49,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <h:commandButton value ="Log in" action ="#{client.login()}"/>
+                                <h:commandButton value ="#{messages.login}" action ="#{client.login()}"/>
                             </td>
                         </tr>
 
@@ -65,7 +65,7 @@
                             <th>Create New Account</th>
                             <tr>
                                 <td class="left">
-                                    <h:outputLabel for="username" value ="Username: "/>
+                                    <h:outputLabel for="username" value ="#{messages.username}: "/>
                                 </td>
                                 <td class="right">
                                     <h:inputText id ="username" value="#{client.username}"/>
@@ -73,7 +73,7 @@
                             </tr>
                             <tr>
                                 <td class="left">
-                                    <h:outputLabel for ="password" value ="Password: "/>
+                                    <h:outputLabel for ="password" value ="#{messages.password}: "/>
                                 </td>
                                 <td class="right">
                                     <h:inputSecret id ="password" value="#{client.password}"/>
@@ -81,7 +81,7 @@
                             </tr>
                             <tr>
                                 <td class="left">
-                                    <h:outputLabel for ="ssn" value ="SSN: "/>
+                                    <h:outputLabel for ="ssn" value ="#{messages.ssn}: "/>
                                 </td>
                                 <td class="right">
                                     <h:inputText id ="ssn" value="#{client.ssn}"/>
@@ -89,7 +89,7 @@
                             </tr>
                             <tr>
                                 <td class="left">
-                                    <h:outputLabel for ="name" value ="Name: "/>
+                                    <h:outputLabel for ="name" value ="#{messages.name}: "/>
                                 </td>
                                 <td class="right">
                                     <h:inputText id ="name" value="#{client.name}"/>
@@ -97,7 +97,7 @@
                             </tr>
                             <tr>
                                 <td class="left">
-                                    <h:outputLabel for ="surname" value ="Surname: "/>
+                                    <h:outputLabel for ="surname" value ="#{messages.surname}: "/>
                                 </td>
                                 <td class="right">
                                     <h:inputText id ="surname" value="#{client.surname}"/>
@@ -105,7 +105,7 @@
                             </tr>
                             <tr>
                                 <td class="left">
-                                    <h:outputLabel for ="email" value ="Email: "/>
+                                    <h:outputLabel for ="email" value ="#{messages.email}: "/>
                                 </td>
                                 <td class="right">
                                     <h:inputText id ="email" value="#{client.email}"/>
@@ -114,7 +114,7 @@
                             <tr>
                                 <td></td>
                                 <td>
-                                    <h:commandButton value ="Create" onclick="return checkData()" action ="#{client.newAccount()}"/>
+                                    <h:commandButton value ="#{messages.reg}" onclick="return checkData()" action ="#{client.newAccount()}"/>
                                 </td>
                             </tr>
                         </table>
