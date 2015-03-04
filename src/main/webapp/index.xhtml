@@ -27,7 +27,7 @@
     <main>
         <h:body>
             <div id="left_col">
-                <h:form>
+                <h:form id="login">
                     <table class="form">
                         <th>#{messages.login}</th>
                         <tr>
@@ -35,7 +35,7 @@
                                 <h:outputLabel for="username" value ="#{messages.username}: "/>
                             </td>
                             <td class="right">
-                                <h:inputText id ="username" value="#{client.username}"/>
+                                <h:inputText id ="username" value="#{login.username}"/>
                             </td>
                         </tr>
                         <tr>
@@ -43,13 +43,13 @@
                                 <h:outputLabel for ="password" value ="#{messages.password}: "/>
                             </td>
                             <td class="right"> 
-                                <h:inputSecret id ="password" value="#{client.password}"/>
+                                <h:inputSecret id ="password" value="#{login.password}"/>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <h:commandButton value ="#{messages.login}" action ="#{client.login()}"/>
+                                <h:commandButton value ="#{messages.login}" onclick="return loginCheck()" action ="#{login.login()}"/>
                             </td>
                         </tr>
 
@@ -68,7 +68,7 @@
                                     <h:outputLabel for="username" value ="#{messages.username}: "/>
                                 </td>
                                 <td class="right">
-                                    <h:inputText id ="username" value="#{client.username}"/>
+                                    <h:inputText id ="username" value="#{login.username}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -76,7 +76,7 @@
                                     <h:outputLabel for ="password" value ="#{messages.password}: "/>
                                 </td>
                                 <td class="right">
-                                    <h:inputSecret id ="password" value="#{client.password}"/>
+                                    <h:inputSecret id ="password" value="#{login.password}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -84,7 +84,7 @@
                                     <h:outputLabel for ="ssn" value ="#{messages.ssn}: "/>
                                 </td>
                                 <td class="right">
-                                    <h:inputText id ="ssn" value="#{client.ssn}"/>
+                                    <h:inputText id ="ssn" value="#{login.ssn}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -92,7 +92,7 @@
                                     <h:outputLabel for ="name" value ="#{messages.name}: "/>
                                 </td>
                                 <td class="right">
-                                    <h:inputText id ="name" value="#{client.name}"/>
+                                    <h:inputText id ="name" value="#{login.name}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -100,7 +100,7 @@
                                     <h:outputLabel for ="surname" value ="#{messages.surname}: "/>
                                 </td>
                                 <td class="right">
-                                    <h:inputText id ="surname" value="#{client.surname}"/>
+                                    <h:inputText id ="surname" value="#{login.surname}"/>
                                 </td>
                             </tr>
                             <tr>
@@ -108,21 +108,42 @@
                                     <h:outputLabel for ="email" value ="#{messages.email}: "/>
                                 </td>
                                 <td class="right">
-                                    <h:inputText id ="email" value="#{client.email}"/>
+                                    <h:inputText id ="email" value="#{login.email}"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>
-                                    <h:commandButton value ="#{messages.reg}" onclick="return checkData()" action ="#{client.newAccount()}"/>
+                                    <h:commandButton value ="#{messages.reg}" onclick="return checkData()" action ="#{login.newAccount()}"/>
                                 </td>
                             </tr>
                         </table>
                     </h:form>
                 </div>    
             </f:view>
+            
+            <h:outputLabel rendered="#{!login.resultLogin}" value="#{messages.loginError}"/>
+            <h:outputLabel rendered="#{!login.result}" value="#{messages.existAccount}"/>
 
             <script language="javascript">
+                function loginCheck(){
+                    var validation = true;
+                    var username = document.getElementById("login:username");
+                    var password = document.getElementById("login:password");
+                    
+                    if(username.value == ""){
+                        alert("You must enter the username");
+                        validation = false;
+                    }
+                    else if(password.value == ""){
+                        alert("You must enter the password");
+                        validation = false;
+                    }
+                    
+                    return validation;
+                }
+                
+                
                 function checkData() {
 
                     var validation = true;
@@ -134,7 +155,7 @@
                     var email = document.getElementById("registration:email");
                     var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                     var ssnReg = /^\d{10}$/;
-                    var passwordReg = /^[A-Z]\w*\d{1,}$/;
+                    var passwordReg = /^\w*\d{1,}$/;
                     var usernameReg = /^\w*$/;
                     
                     if (username.value == "") {

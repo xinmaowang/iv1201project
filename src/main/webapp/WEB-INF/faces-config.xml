@@ -4,11 +4,11 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     
-     <application>
-         <locale-config>
-         <default-locale>sv</default-locale>
-         <supported-locale>en</supported-locale>
-      </locale-config>
+    <application>
+        <locale-config>
+            <default-locale>sv</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
         <resource-bundle>
             <base-name>view.Messages</base-name>
             <var>messages</var>
@@ -18,26 +18,26 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <if>#{client.succ}</if>
+            <if>#{login.succ}</if>
             <to-view-id>/user/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
     
-      <navigation-rule>
+    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <if>#{client.succAdmin}</if>
+            <if>#{login.succAdmin}</if>
             <to-view-id>/admin/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <if>#{client.newAccount}</if>
+            <if>#{login.newAccount}</if>
             <to-view-id>/success.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+    
 </faces-config>

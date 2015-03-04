@@ -8,9 +8,10 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import model.Interface.personInterface;
 import model.Interface.roleInterface;
 
-@Named("client")
+@Named("login")
 @ConversationScoped
 public class LoginManager implements Serializable {
 
@@ -27,7 +28,18 @@ public class LoginManager implements Serializable {
     private boolean succ = false;
     private boolean newAccount = false;
     private boolean succAdmin = false;
+    private boolean result = true;
+    private boolean resultLogin = true;
+    private personInterface person = null;
 
+    public boolean isResultLogin() {
+        return resultLogin;
+    }
+
+    public boolean getResult() {
+        return result;
+    }
+    
     public boolean isSuccAdmin() {
         return succAdmin;
     }
@@ -153,15 +165,17 @@ public class LoginManager implements Serializable {
             startConversation();
             transactionFailure = null;
             succ = false;
-           roleInterface role = controller.login(username, password);
-           if (role != null){
-               if (role.getName().equals("user")){
+            person = controller.login(username, password);
+           if (person != null){
+               if (person.getRole_id().getName().equals("user")){
                    succ = true;
                }
-               else if (role.getName().equals("admin")){
+               else if (person.getRole_id().getName().equals("admin")){
                    succAdmin = true;
                }
-               
+           }
+           else{
+               resultLogin = false;
            }
             
 
@@ -178,6 +192,9 @@ public class LoginManager implements Serializable {
             succ = false;
             if(controller.newAccount(name, surname, username, password, ssn, email).equals("success")){
                 newAccount = true;
+            }
+            else{
+                result = false;
             }
             
 

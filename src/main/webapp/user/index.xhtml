@@ -17,15 +17,13 @@
     </h:head>
     <h:body>
         <p>
-            <h:outputLabel for="currHolder" rendered="#{!client.succ}"  value="You're have not autorized"/>
+            <h:outputLabel for="currHolder" rendered="#{!login.succ}"  value="You're have not autorized"/>
             <p></p>
-            <h:link rendered="#{!client.succ}" value="Back to Mainpage" outcome="/faces/index"/>
+            <h:link rendered="#{!login.succ}" value="Back to Mainpage" outcome="/faces/index"/>
         </p>
        
-        <h:form rendered="#{client.succ}" >
-            <p>
-                Success
-            </p>
+        <h:form rendered="#{login.succ}" >
+            
         </h:form>
     </h:body>
 </html>

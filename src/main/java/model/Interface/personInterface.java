@@ -5,6 +5,8 @@
  */
 package model.Interface;
 
+import model.Role;
+
 /**
  *
  * @author Xinmao
@@ -14,4 +16,5 @@ public interface personInterface {
     public String getSurname();
     public String getEmail();
     public String getSsn();
+    public Role getRole_id();
 }

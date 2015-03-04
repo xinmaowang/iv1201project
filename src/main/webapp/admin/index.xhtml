@@ -17,12 +17,12 @@
     </h:head>
     <h:body>
         <p>
-            <h:outputLabel for="currHolder" rendered="#{!client.succAdmin}"  value="You're have not autorized"/>
+            <h:outputLabel for="currHolder" rendered="#{!login.succAdmin}"  value="#{messages.notAuth}"/>
             <p></p>
-            <h:link rendered="#{!client.succAdmin}" value="Back to Mainpage" outcome="/faces/index"/>
+            <h:link rendered="#{!login.succAdmin}" value="#{messages.backToMain}" outcome="/faces/index"/>
         </p>
        
-        <h:form rendered="#{client.succAdmin}" >
+        <h:form rendered="#{login.succAdmin}" >
             <p>
                 Admin Success
             </p>
