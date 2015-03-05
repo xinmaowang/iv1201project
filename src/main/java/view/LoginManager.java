@@ -31,76 +31,6 @@ public class LoginManager implements Serializable {
     private boolean result = true;
     private boolean resultLogin = true;
     private personInterface person = null;
-
-    public boolean isResultLogin() {
-        return resultLogin;
-    }
-
-    public boolean getResult() {
-        return result;
-    }
-    
-    public boolean isSuccAdmin() {
-        return succAdmin;
-    }
-    
-    public boolean isNewAccount() {
-        return newAccount;
-    }
-
-
-
-    public boolean getSucc() {
-        return succ;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
     private Exception transactionFailure;
     private boolean succes = false;
    
@@ -202,6 +132,80 @@ public class LoginManager implements Serializable {
             handleException(e);
         }
         return jsf22Bugfix();
+    }
+        
+    public boolean isResultLogin() {
+        return resultLogin;
+    }
+
+    public boolean getResult() {
+        return result;
+    }
+    
+    public boolean isSuccAdmin() {
+        return succAdmin;
+    }
+    
+    public boolean isNewAccount() {
+        return newAccount;
+    }
+
+
+
+    public boolean getSucc() {
+        return succ;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public personInterface getPerson() {
+        return person;
     }
 
 

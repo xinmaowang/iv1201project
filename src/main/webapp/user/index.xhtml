@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    
+
     <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'></link>
     <link href='http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,500italic,300italic,400' rel='stylesheet' type='text/css'></link>
     <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'></link>
@@ -13,6 +13,22 @@
     <h:head>
         <title>Welcome</title>
         <link href = "style.css" rel="stylesheet"></link>
+        <h:outputLabel value ="#{client.init()}"/>
+        <script language ="javascript">
+            function competenceCheck() {
+
+                var validation = true;
+                var years = document.getElementById("success:competence:experience").value;
+
+                if (years == "") {
+                    alert("yakjshda");
+                    validation = false;
+                }
+
+                return validation;
+
+            }
+        </script>
 
     </h:head>
     <h:body>
@@ -21,8 +37,79 @@
             <p></p>
             <h:link rendered="#{!login.succ}" value="Back to Mainpage" outcome="/faces/index"/>
         </p>
+
+        <h:form rendered="#{login.succ}" id="success">
+      
+            <h:form id="competence" rendered="#{!client.successC}">
+                    <table class="form">
+                        <th>Experience area</th>
+                        <tr>
+                            <td class="left">
+                                <h:outputLabel for="area" value ="Area: "/>
+                            </td>
+                            <td class="right">
+                                <h:selectOneMenu id="area" value="#{client.competence_id}">
+                                    <f:selectItems value="#{client.favCoffee3Value}" var="c"
+                                                   itemLabel="#{c.competence_name}" itemValue="#{c.competence_id}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <h:outputLabel for ="experience" value ="Years of experience: "/>
+                            </td>
+                            <td class="right"> 
+                                <h:inputText id ="experience" value="#{client.years_of_experience}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <h:commandButton value ="Next" onclick="return competenceCheck()" action ="#{client.nextArea(login.person.id)}">
+                                    <f:param name ="personid" value="11"/>
+                                </h:commandButton>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            
+            
        
-        <h:form rendered="#{login.succ}" >
+            <h:form id="available_time" rendered ="#{client.successC}">
+                    <table class="form">
+                        <th>Availability periods</th>
+                        <tr>
+                            <td class="left">
+                                <h:outputLabel value ="From Date: "/>
+                            </td>
+                            <td class="right">
+                                <h:inputText id="from_day" value="#{client.from_day}"/>
+                                <h:inputText id="from_month" value="#{client.from_month}"/>
+                                <h:inputText id="from_year" value="#{client.from_year}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="left">
+                                <h:outputLabel value ="To Date: "/>
+                            </td>
+                            <td class="right"> 
+                               <h:inputText id="to_day" value="#{client.to_day}"/>
+                                <h:inputText id="to_month" value="#{client.to_month}"/>
+                                <h:inputText id="to_year" value="#{client.to_year}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <h:commandButton value ="Next" onclick="return competenceCheck()" >
+                                    <f:param name ="personid" value="11"/>
+                                </h:commandButton>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            
+            
             
         </h:form>
     </h:body>

@@ -43,6 +43,8 @@ public class Controller {
             person.setRole_id(role);
             account.setPerson_id(person);
             em.persist(account);
+            
+            
         }
     }
 

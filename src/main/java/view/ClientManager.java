@@ -1,30 +1,44 @@
 package view;
 
-
+import controller.UserController;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import model.Competence;
 
-@Named("client")
+@ManagedBean(name="client")
 @ConversationScoped
 public class ClientManager implements Serializable {
 
     private static final long serialVersionUID = 16247164405L;
     @EJB
 
-   
-    private String username;
-    private String password;
-    private float balance;
-    private String gnomename;
-    private int unit;
+    private UserController uController;
+    private Long competence_id;
+    private String c;
+    private int from_day;
+    private int from_month;
+    private int from_year;
+    private int to_day;
+    private int to_month;
+    private int to_year;
+    private Date from_date;
+    private Date to_date;
+    private Double years_of_experience;
     private Exception transactionFailure;
-    private boolean succes = false;
-   
+    private boolean successC = false;
+    private boolean successA = false;
+
     @Inject
     private Conversation conversation;
 
@@ -54,8 +68,6 @@ public class ClientManager implements Serializable {
         return transactionFailure == null;
     }
 
-
-
     /**
      * Returns the latest thrown exception.
      */
@@ -75,7 +87,110 @@ public class ClientManager implements Serializable {
     private String jsf22Bugfix() {
         return "";
     }
-    
 
- 
+    public void init() {
+        uController.init();
+    }
+
+    
+    public void nextArea(Long s){
+        successC = true;
+        uController.nextArea(competence_id, years_of_experience, s);
+    }
+    
+      private Competence[] coffee3List;
+
+    public Competence[] getFavCoffee3Value(){
+         
+        List<Competence> compe = uController.getCompetenceList();
+        coffee3List = new Competence[compe.size()];
+        int i = 0;
+        for (Competence com : compe) {
+            coffee3List[i] = com;
+            i++;
+        }
+        return coffee3List;
+
+    }
+
+    public int getFrom_day() {
+        return from_day;
+    }
+
+    public void setFrom_day(int from_day) {
+        this.from_day = from_day;
+    }
+
+    public int getFrom_month() {
+        return from_month;
+    }
+
+    public void setFrom_month(int from_month) {
+        this.from_month = from_month;
+    }
+
+    public int getFrom_year() {
+        return from_year;
+    }
+
+    public void setFrom_year(int from_year) {
+        this.from_year = from_year;
+    }
+
+    public int getTo_day() {
+        return to_day;
+    }
+
+    public void setTo_day(int to_day) {
+        this.to_day = to_day;
+    }
+
+    public int getTo_month() {
+        return to_month;
+    }
+
+    public void setTo_month(int to_month) {
+        this.to_month = to_month;
+    }
+
+    public int getTo_year() {
+        return to_year;
+    }
+
+    public void setTo_year(int to_year) {
+        this.to_year = to_year;
+    }
+
+    public Double getYears_of_experience() {
+        return years_of_experience;
+    }
+
+    public void setYears_of_experience(Double years_of_experience) {
+        this.years_of_experience = years_of_experience;
+    }
+    
+    public Long getCompetence_id() {
+        return competence_id;
+    }
+
+    public void setCompetence_id(Long competence_id) {
+        this.competence_id = competence_id;
+    }
+
+    public String getC() {
+        return c;
+    }
+
+    public void setC(String c) {
+        this.c = c;
+    }
+
+    public boolean isSuccessC() {
+        return successC;
+    }
+
+    public boolean isSuccessA() {
+        return successA;
+    }
+
 }

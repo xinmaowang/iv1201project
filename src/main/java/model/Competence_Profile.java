@@ -6,10 +6,13 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -29,7 +32,7 @@ public class Competence_Profile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long competence_profile;
+    private Long competence_profile_id;
     
     
    
@@ -39,48 +42,32 @@ public class Competence_Profile implements Serializable {
     @OneToOne
     private Competence competence_id;
     
-    private Double Years_of_experience;
+    private Double years_of_experience;
     
     public Competence_Profile(){
         
     }
     
-    public Competence_Profile(Long competence_profile_id, Person person_id, 
-            Competence competence_id, double Years_of_experience) {
+    public Competence_Profile(Double years_of_experience) {
+        Random rand = new Random();
+        this.competence_profile_id = new Long(rand.nextInt(Integer.MAX_VALUE) + 1);
+        this.years_of_experience = years_of_experience;
+    }
+
+    public Person getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(Person person_id) {
+        this.person_id = person_id;
+    }
+
+    public Competence getCompetence_id() {
+        return competence_id;
+    }
+
+    public void setCompetence_id(Competence competence_id) {
+        this.competence_id = competence_id;
     }
    
-
-    public Long getId() {
-        return competence_profile;
-    }
-
-    public void setId(Long id) {
-        this.competence_profile = competence_profile;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (competence_profile != null ? competence_profile.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Competence_Profile)) {
-            return false;
-        }
-        Competence_Profile other = (Competence_Profile) object;
-        if ((this.competence_profile == null && other.competence_profile != null) || (this.competence_profile != null && !this.competence_profile.equals(other.competence_profile))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "model.Competence_Profile[ id=" + competence_profile + " ]";
-    }
-    
 }

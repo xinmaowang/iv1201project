@@ -16,6 +16,8 @@ public class LocaleManager {
     }
 
     private String getLanguageCode() {
-        return FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("languageCode");
+        String s = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("languageCode");
+        String ss = "asda";
+        return s;
     }
 }

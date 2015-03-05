@@ -12,6 +12,7 @@ import model.Role;
  * @author Xinmao
  */
 public interface personInterface {
+    public Long getId();
     public String getName();
     public String getSurname();
     public String getEmail();
