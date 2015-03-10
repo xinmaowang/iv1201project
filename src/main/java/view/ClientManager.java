@@ -2,7 +2,7 @@ package view;
 
 import controller.UserController;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +38,7 @@ public class ClientManager implements Serializable {
     private Exception transactionFailure;
     private boolean successC = false;
     private boolean successA = false;
+    private Competence[] coffee3List;
 
     @Inject
     private Conversation conversation;
@@ -98,7 +99,6 @@ public class ClientManager implements Serializable {
         uController.nextArea(competence_id, years_of_experience, s);
     }
     
-      private Competence[] coffee3List;
 
     public Competence[] getFavCoffee3Value(){
          
@@ -111,6 +111,32 @@ public class ClientManager implements Serializable {
         }
         return coffee3List;
 
+    }
+    
+    public void finish(Long s){
+        successA = true;
+        from_date = new Date(from_year, from_month, from_day);
+        to_date = new Date(to_year, to_month, to_day);
+        uController.finish(s, from_date, to_date);
+        
+    }
+    
+    public Map<String, Integer> getMonthlist(){
+       Map<String, Integer> month = new LinkedHashMap<String, Integer>();
+       month.put("January", 0);
+       month.put("February", 1);
+       month.put("March", 2);
+       month.put("April", 3);
+       month.put("May", 4);
+       month.put("June", 5);
+       month.put("July", 6);
+       month.put("August", 7);
+       month.put("September", 8);
+       month.put("October", 9);
+       month.put("November", 10);
+       month.put("December", 11);
+       
+       return month;
     }
 
     public int getFrom_day() {
@@ -134,7 +160,7 @@ public class ClientManager implements Serializable {
     }
 
     public void setFrom_year(int from_year) {
-        this.from_year = from_year;
+        this.from_year = from_year - 1900;
     }
 
     public int getTo_day() {
@@ -158,7 +184,7 @@ public class ClientManager implements Serializable {
     }
 
     public void setTo_year(int to_year) {
-        this.to_year = to_year;
+        this.to_year = to_year - 1900;
     }
 
     public Double getYears_of_experience() {

@@ -5,6 +5,7 @@ import model.Person;
 import model.Role;
 import model.Account;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import model.Interface.roleInterface;
 import javax.ejb.Stateless;
@@ -14,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
+import model.Availability;
 import model.Competence;
 import model.Competence_Profile;
 import model.Interface.personInterface;
@@ -53,6 +55,12 @@ public class UserController {
         profile.setCompetence_id(em.find(Competence.class, competence_id));
         profile.setPerson_id(em.find(Person.class, person_id));
         em.persist(profile);
+    }
+    
+    public void finish(Long s, Date from_date, Date to_date){
+        Availability av = new Availability(from_date, to_date);
+        av.setPerson_id(em.find(Person.class, s));
+        em.persist(av);
     }
 
 }

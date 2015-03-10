@@ -83,9 +83,45 @@
                                 <h:outputLabel value ="From Date: "/>
                             </td>
                             <td class="right">
-                                <h:inputText id="from_day" value="#{client.from_day}"/>
-                                <h:inputText id="from_month" value="#{client.from_month}"/>
-                                <h:inputText id="from_year" value="#{client.from_year}"/>
+                                <h:selectOneMenu id="day" value="#{client.from_day}">
+                                   <f:selectItem itemValue="1" itemLabel="1" />
+                                   <f:selectItem itemValue="2" itemLabel="2" />
+                                   <f:selectItem itemValue="3" itemLabel="3" />
+                                   <f:selectItem itemValue="4" itemLabel="4" />
+                                   <f:selectItem itemValue="5" itemLabel="5" />
+                                   <f:selectItem itemValue="6" itemLabel="6" />
+                                   <f:selectItem itemValue="7" itemLabel="7" />
+                                   <f:selectItem itemValue="8" itemLabel="8" />
+                                   <f:selectItem itemValue="9" itemLabel="9" />
+                                   <f:selectItem itemValue="10" itemLabel="10" />
+                                   <f:selectItem itemValue="11" itemLabel="11" />
+                                   <f:selectItem itemValue="12" itemLabel="12" />
+                                   <f:selectItem itemValue="13" itemLabel="13" />
+                                   <f:selectItem itemValue="14" itemLabel="14" />
+                                   <f:selectItem itemValue="15" itemLabel="15" />
+                                   <f:selectItem itemValue="16" itemLabel="16" />
+                                   <f:selectItem itemValue="17" itemLabel="17" />
+                                   <f:selectItem itemValue="18" itemLabel="18" />
+                                   <f:selectItem itemValue="19" itemLabel="19" />
+                                   <f:selectItem itemValue="20" itemLabel="20" />
+                                   <f:selectItem itemValue="21" itemLabel="21" />
+                                   <f:selectItem itemValue="22" itemLabel="22" />
+                                   <f:selectItem itemValue="23" itemLabel="23" />
+                                   <f:selectItem itemValue="24" itemLabel="24" />
+                                   <f:selectItem itemValue="25" itemLabel="25" />
+                                   <f:selectItem itemValue="26" itemLabel="26" />
+                                   <f:selectItem itemValue="27" itemLabel="27" />
+                                   <f:selectItem itemValue="28" itemLabel="28" />
+                                   <f:selectItem itemValue="29" itemLabel="29" />
+                                   <f:selectItem itemValue="30" itemLabel="30" />
+                                   <f:selectItem itemValue="31" itemLabel="31" />
+                                </h:selectOneMenu>
+                                
+                                <h:selectOneMenu id="month" value="#{client.from_month}">
+                                    <f:selectItems value="#{client.monthlist}" />
+                                </h:selectOneMenu>
+                                
+                                <h:inputText id="year" value="#{client.from_year}"/>
                             </td>
                         </tr>
                         <tr>
@@ -93,15 +129,51 @@
                                 <h:outputLabel value ="To Date: "/>
                             </td>
                             <td class="right"> 
-                               <h:inputText id="to_day" value="#{client.to_day}"/>
-                                <h:inputText id="to_month" value="#{client.to_month}"/>
+                               <h:selectOneMenu id="to_day" value="#{client.to_day}">
+                                   <f:selectItem itemValue="1" itemLabel="1" />
+                                   <f:selectItem itemValue="2" itemLabel="2" />
+                                   <f:selectItem itemValue="3" itemLabel="3" />
+                                   <f:selectItem itemValue="4" itemLabel="4" />
+                                   <f:selectItem itemValue="5" itemLabel="5" />
+                                   <f:selectItem itemValue="6" itemLabel="6" />
+                                   <f:selectItem itemValue="7" itemLabel="7" />
+                                   <f:selectItem itemValue="8" itemLabel="8" />
+                                   <f:selectItem itemValue="9" itemLabel="9" />
+                                   <f:selectItem itemValue="10" itemLabel="10" />
+                                   <f:selectItem itemValue="11" itemLabel="11" />
+                                   <f:selectItem itemValue="12" itemLabel="12" />
+                                   <f:selectItem itemValue="13" itemLabel="13" />
+                                   <f:selectItem itemValue="14" itemLabel="14" />
+                                   <f:selectItem itemValue="15" itemLabel="15" />
+                                   <f:selectItem itemValue="16" itemLabel="16" />
+                                   <f:selectItem itemValue="17" itemLabel="17" />
+                                   <f:selectItem itemValue="18" itemLabel="18" />
+                                   <f:selectItem itemValue="19" itemLabel="19" />
+                                   <f:selectItem itemValue="20" itemLabel="20" />
+                                   <f:selectItem itemValue="21" itemLabel="21" />
+                                   <f:selectItem itemValue="22" itemLabel="22" />
+                                   <f:selectItem itemValue="23" itemLabel="23" />
+                                   <f:selectItem itemValue="24" itemLabel="24" />
+                                   <f:selectItem itemValue="25" itemLabel="25" />
+                                   <f:selectItem itemValue="26" itemLabel="26" />
+                                   <f:selectItem itemValue="27" itemLabel="27" />
+                                   <f:selectItem itemValue="28" itemLabel="28" />
+                                   <f:selectItem itemValue="29" itemLabel="29" />
+                                   <f:selectItem itemValue="30" itemLabel="30" />
+                                   <f:selectItem itemValue="31" itemLabel="31" />
+                                </h:selectOneMenu>
+                                
+                                <h:selectOneMenu id="to_month" value="#{client.to_month}">
+                                    <f:selectItems value="#{client.monthlist}" />
+                                </h:selectOneMenu>
+                                
                                 <h:inputText id="to_year" value="#{client.to_year}"/>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td>
-                                <h:commandButton value ="Next" onclick="return competenceCheck()" >
+                                <h:commandButton value ="Next" onclick="return competenceCheck()" action="#{client.finish(login.person.id)}">
                                     <f:param name ="personid" value="11"/>
                                 </h:commandButton>
                             </td>

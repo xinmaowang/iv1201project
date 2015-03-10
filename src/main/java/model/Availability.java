@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,40 +17,40 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /*availability_id BIGINT PRIMARY KEY,
-person_id BIGINT REFERENCES person,
-from_date DATE,
-to_date DATE*/
-
+ person_id BIGINT REFERENCES person,
+ from_date DATE,
+ to_date DATE*/
 /**
  *
  * @author Yau
  */
 @Entity
 public class Availability implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long availability_id;
-    
-    
-   @OneToOne()
+
+    @OneToOne()
     private Person person_id;
-   
-   @Temporal(TemporalType.TIMESTAMP)
-   private java.util.Date from_date;
-    @Temporal(TemporalType.TIMESTAMP) 
-   private java.util.Date to_date;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date from_date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date to_date;
 
     public Availability() {
-        
+
     }
-    
-    public Availability(Long availability_id, Date from_date, Date to_date) {
-    this.availability_id = availability_id;
-    this.from_date = from_date;
-    this.to_date = to_date;
-}
-    
+
+    public Availability(Date from_date, Date to_date) {
+        Random rand = new Random();
+        this.availability_id = new Long(rand.nextInt(Integer.MAX_VALUE) + 1);
+        this.from_date = from_date;
+        this.to_date = to_date;
+    }
+
     public Person getPerson_id() {
         return person_id;
     }
@@ -106,5 +107,5 @@ public class Availability implements Serializable {
     public String toString() {
         return "model.Availability[ id=" + availability_id + " ]";
     }
-    
+
 }
