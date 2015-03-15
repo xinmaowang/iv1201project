@@ -11,13 +11,13 @@ import javax.inject.Named;
 @Named(value="locale")
 @ApplicationScoped
 public class LocaleManager {
-    public void changeLocale() {
+    public String changeLocale() {
         FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(getLanguageCode()));
+        return "";
     }
 
     private String getLanguageCode() {
         String s = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("languageCode");
-        String ss = "asda";
         return s;
     }
 }

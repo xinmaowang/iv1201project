@@ -33,7 +33,7 @@ public class UserController {
 
     public void init() {
         if (em.find(Competence.class, new Long(1)) == null) {
-            Competence com = new Competence(null, "Java");
+            Competence com = new Competence(new Long(1), "Java");
             Competence com1 = new Competence(null, "C++");
             Competence com2 = new Competence(null, "Web server");
             Competence com3 = new Competence(null, "Economic");

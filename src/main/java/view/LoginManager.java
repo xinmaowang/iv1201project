@@ -33,7 +33,8 @@ public class LoginManager implements Serializable {
     private personInterface person = null;
     private Exception transactionFailure;
     private boolean succes = false;
-   
+    private boolean au = false;
+
     @Inject
     private Conversation conversation;
 
@@ -63,8 +64,6 @@ public class LoginManager implements Serializable {
         return transactionFailure == null;
     }
 
-
-
     /**
      * Returns the latest thrown exception.
      */
@@ -84,56 +83,53 @@ public class LoginManager implements Serializable {
     private String jsf22Bugfix() {
         return "";
     }
-    
-    public void init(){
+
+    public void init() {
         controller.init();
     }
-    
-    
+
     public String login() {
         try {
             startConversation();
             transactionFailure = null;
             succ = false;
             person = controller.login(username, password);
-           if (person != null){
-               if (person.getRole_id().getName().equals("user")){
-                   succ = true;
-               }
-               else if (person.getRole_id().getName().equals("admin")){
-                   succAdmin = true;
-               }
-           }
-           else{
-               resultLogin = false;
-           }
-            
+            if (person != null) {
+                if (person.getRole_id().getName().equals("user")) {
+                    succ = true;
+                } else if (person.getRole_id().getName().equals("admin")) {
+                    succAdmin = true;
+                }
+            } else {
+                resultLogin = false;
+            }
 
         } catch (Exception e) {
             handleException(e);
         }
         return jsf22Bugfix();
     }
-    
-        public String newAccount() {
+
+    public String newAccount() {
         try {
             startConversation();
             transactionFailure = null;
             succ = false;
-            if(controller.newAccount(name, surname, username, password, ssn, email).equals("success")){
+            newAccount = false;
+            au = false;
+            if (controller.newAccount(name, surname, username, password, ssn, email).equals("success")) {
+                au = true;
                 newAccount = true;
-            }
-            else{
+            } else {
                 result = false;
             }
-            
 
         } catch (Exception e) {
             handleException(e);
         }
         return jsf22Bugfix();
     }
-        
+
     public boolean isResultLogin() {
         return resultLogin;
     }
@@ -141,16 +137,16 @@ public class LoginManager implements Serializable {
     public boolean getResult() {
         return result;
     }
-    
+
     public boolean isSuccAdmin() {
         return succAdmin;
     }
-    
+
     public boolean isNewAccount() {
-        return newAccount;
+        boolean b = newAccount;
+        newAccount = false;
+        return b;
     }
-
-
 
     public boolean getSucc() {
         return succ;
@@ -208,6 +204,9 @@ public class LoginManager implements Serializable {
         return person;
     }
 
+    public boolean isAu() {
+        return au;
+    }
 
- 
+
 }

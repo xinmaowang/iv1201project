@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import model.Competence;
 
-@ManagedBean(name="client")
+@Named("client")
 @ConversationScoped
 public class ClientManager implements Serializable {
 
@@ -34,11 +34,11 @@ public class ClientManager implements Serializable {
     private int to_year;
     private Date from_date;
     private Date to_date;
+    private boolean successa = false;
     private Double years_of_experience;
+    private Competence[] coffee3List;
     private Exception transactionFailure;
     private boolean successC = false;
-    private boolean successA = false;
-    private Competence[] coffee3List;
 
     @Inject
     private Conversation conversation;
@@ -93,15 +93,21 @@ public class ClientManager implements Serializable {
         uController.init();
     }
 
-    
-    public void nextArea(Long s){
-        successC = true;
-        uController.nextArea(competence_id, years_of_experience, s);
-    }
-    
+    public String nextArea(Long s) {
+        try {
+            startConversation();
+            transactionFailure = null;
+            successC = true;
+            uController.nextArea(competence_id, years_of_experience, s);
 
-    public Competence[] getFavCoffee3Value(){
-         
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
+    }
+
+    public Competence[] getFavCoffee3Value() {
+
         List<Competence> compe = uController.getCompetenceList();
         coffee3List = new Competence[compe.size()];
         int i = 0;
@@ -112,31 +118,38 @@ public class ClientManager implements Serializable {
         return coffee3List;
 
     }
-    
-    public void finish(Long s){
-        successA = true;
-        from_date = new Date(from_year, from_month, from_day);
-        to_date = new Date(to_year, to_month, to_day);
-        uController.finish(s, from_date, to_date);
-        
+
+    public String finish(Long s) {
+        try {
+            startConversation();
+            transactionFailure = null;
+            successa = true;
+            from_date = new Date(from_year, from_month, from_day);
+            to_date = new Date(to_year, to_month, to_day);
+            uController.finish(s, from_date, to_date);
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
     }
-    
-    public Map<String, Integer> getMonthlist(){
-       Map<String, Integer> month = new LinkedHashMap<String, Integer>();
-       month.put("January", 0);
-       month.put("February", 1);
-       month.put("March", 2);
-       month.put("April", 3);
-       month.put("May", 4);
-       month.put("June", 5);
-       month.put("July", 6);
-       month.put("August", 7);
-       month.put("September", 8);
-       month.put("October", 9);
-       month.put("November", 10);
-       month.put("December", 11);
-       
-       return month;
+
+    public Map<String, Integer> getMonthlist() {
+        Map<String, Integer> month = new LinkedHashMap<String, Integer>();
+        month.put("January", 0);
+        month.put("February", 1);
+        month.put("March", 2);
+        month.put("April", 3);
+        month.put("May", 4);
+        month.put("June", 5);
+        month.put("July", 6);
+        month.put("August", 7);
+        month.put("September", 8);
+        month.put("October", 9);
+        month.put("November", 10);
+        month.put("December", 11);
+
+        return month;
     }
 
     public int getFrom_day() {
@@ -194,7 +207,7 @@ public class ClientManager implements Serializable {
     public void setYears_of_experience(Double years_of_experience) {
         this.years_of_experience = years_of_experience;
     }
-    
+
     public Long getCompetence_id() {
         return competence_id;
     }
@@ -215,8 +228,8 @@ public class ClientManager implements Serializable {
         return successC;
     }
 
-    public boolean isSuccessA() {
-        return successA;
+    public boolean isSuccessa() {
+        return successa;
     }
 
 }
