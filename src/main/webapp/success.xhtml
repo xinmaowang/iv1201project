@@ -10,8 +10,8 @@
         <ui:define name="content">
         <div id="mainBody">
         
-            <h:outputLabel for="currHolder" rendered="#{login.newAccount}"  value="#{messages.createdAccount}"/>
-            <h:outputLabel for="holder" rendered="#{!login.newAccount}"  value="#{messages.notAuth}"/>
+            <h:outputLabel for="currHolder" rendered="#{login.au}"  value="#{messages.createdAccount}"/>
+            <h:outputLabel for="holder" rendered="#{!login.au}"  value="#{messages.notAuth}"/>
             <p></p>
             <h:link value="#{messages.backToMain}" outcome="/faces/index"/>
         </div>
