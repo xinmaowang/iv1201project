@@ -129,3 +129,11 @@ table, table.form {
     float:right;
     width:50%;
 }
+a {
+    color: #fff;
+    text-decoration: none;
+}
+a:hover {
+    color: #a8a8a8;
+    font-weight: bold;
+}
