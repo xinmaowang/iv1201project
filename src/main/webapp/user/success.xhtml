@@ -6,19 +6,17 @@
 
     <h:body>
     	
-    <ui:composition template="template/common/layout.xhtml">
+    <ui:composition template="/template/common/layout.xhtml">
         <ui:define name="content">
-        <main>
+        <div id="mainBody">
         <h:body>
-            <h:outputLabel for="currHolder1" rendered="#{client.successa}"  value="You have success filled in all infomation"/>
+            <h:outputLabel for="currHolder1" rendered="#{client.successa}"  value="#{messages.filledSuccess}"/>
             <h:outputLabel for="holder" rendered="#{!client.successa}"  value="#{messages.notAuth}"/>
             <p></p>
             <h:link value="#{messages.backToMain}" outcome="/faces/index"/>
         </h:body>
-        </main>
+        </div>
         </ui:define>
     </ui:composition>
-    </h:body>
-
+</h:body>
 </html>
-

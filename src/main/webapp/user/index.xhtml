@@ -31,19 +31,19 @@
 
 
         <p>
-            <h:outputLabel for="currHolder" rendered="#{!login.succ}"  value="You're have not autorized"/>
+            <h:outputLabel for="currHolder" rendered="#{!login.succ}"  value="#{messages.notAuth}"/>
             <p></p>
-            <h:link rendered="#{!login.succ}" value="Back to Mainpage" outcome="/faces/index"/>
+            <h:link rendered="#{!login.succ}" value="#{messages.backToMain}" outcome="/faces/index"/>
         </p>
 
         <h:form rendered="#{login.succ}" id="success">
       
             <h:form id="competence" rendered="#{!client.successC}">
                     <table class="form">
-                        <th>Experience area</th>
+                        <th>#{messages.experience}</th>
                         <tr>
                             <td class="left">
-                                <h:outputLabel for="area" value ="Area: "/>
+                                <h:outputLabel for="area" value ="#{messages.area}"/>
                             </td>
                             <td class="right">
                                 <h:selectOneMenu id="area" value="#{client.competence_id}">
@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <td class="left">
-                                <h:outputLabel for ="experience" value ="Years of experience: "/>
+                                <h:outputLabel for ="experience" value ="#{messages.experienceYears} "/>
                             </td>
                             <td class="right"> 
                                 <h:inputText id ="experience" value="#{client.years_of_experience}"/>
@@ -63,7 +63,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <h:commandButton value ="Next" onclick="return competenceCheck()" action ="#{client.nextArea(login.person.id)}">
+                                <h:commandButton value ="#{messages.next}" onclick="return competenceCheck()" action ="#{client.nextArea(login.person.id)}">
                                     <f:param name ="personid" value="11"/>
                                 </h:commandButton>
                             </td>
@@ -78,7 +78,7 @@
                         <th>Availability periods</th>
                         <tr>
                             <td class="left">
-                                <h:outputLabel value ="From Date: "/>
+                                <h:outputLabel value ="#{messages.fromDate}"/>
                             </td>
                             <td class="right">
                                 <h:selectOneMenu id="day" value="#{client.from_day}">
@@ -116,7 +116,18 @@
                                 </h:selectOneMenu>
                                 
                                 <h:selectOneMenu id="month" value="#{client.from_month}">
-                                    <f:selectItems value="#{client.monthlist}" />
+                                   <f:selectItem itemValue="0" itemLabel="#{messages.january}" />
+                                   <f:selectItem itemValue="1" itemLabel="#{messages.february}" />
+                                   <f:selectItem itemValue="2" itemLabel="#{messages.march}" />
+                                   <f:selectItem itemValue="3" itemLabel="#{messages.april}" />
+                                   <f:selectItem itemValue="4" itemLabel="#{messages.may}" />
+                                   <f:selectItem itemValue="5" itemLabel="#{messages.june}" />
+                                   <f:selectItem itemValue="6" itemLabel="#{messages.july}" />
+                                   <f:selectItem itemValue="7" itemLabel="#{messages.august}" />
+                                   <f:selectItem itemValue="8" itemLabel="#{messages.september}" />
+                                   <f:selectItem itemValue="9" itemLabel="#{messages.october}" />
+                                   <f:selectItem itemValue="10" itemLabel="#{messages.november}" />
+                                   <f:selectItem itemValue="11" itemLabel="#{messages.december}" />                                    
                                 </h:selectOneMenu>
                                 
                                 <h:inputText id="year" value="#{client.from_year}"/>
@@ -124,7 +135,7 @@
                         </tr>
                         <tr>
                             <td class="left">
-                                <h:outputLabel value ="To Date: "/>
+                                <h:outputLabel value ="#{messages.toDate}"/>
                             </td>
                             <td class="right"> 
                                <h:selectOneMenu id="to_day" value="#{client.to_day}">
@@ -162,7 +173,18 @@
                                 </h:selectOneMenu>
                                 
                                 <h:selectOneMenu id="to_month" value="#{client.to_month}">
-                                    <f:selectItems value="#{client.monthlist}" />
+                                   <f:selectItem itemValue="0" itemLabel="#{messages.january}" />
+                                   <f:selectItem itemValue="1" itemLabel="#{messages.february}" />
+                                   <f:selectItem itemValue="2" itemLabel="#{messages.march}" />
+                                   <f:selectItem itemValue="3" itemLabel="#{messages.april}" />
+                                   <f:selectItem itemValue="4" itemLabel="#{messages.may}" />
+                                   <f:selectItem itemValue="5" itemLabel="#{messages.june}" />
+                                   <f:selectItem itemValue="6" itemLabel="#{messages.july}" />
+                                   <f:selectItem itemValue="7" itemLabel="#{messages.august}" />
+                                   <f:selectItem itemValue="8" itemLabel="#{messages.september}" />
+                                   <f:selectItem itemValue="9" itemLabel="#{messages.october}" />
+                                   <f:selectItem itemValue="10" itemLabel="#{messages.november}" />
+                                   <f:selectItem itemValue="11" itemLabel="#{messages.december}" />                                    
                                 </h:selectOneMenu>
                                 
                                 <h:inputText id="to_year" value="#{client.to_year}"/>
@@ -171,7 +193,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <h:commandButton value ="Next" onclick="return competenceCheck()" action="#{client.finish(login.person.id)}">
+                                <h:commandButton value ="#{messages.next}" onclick="return competenceCheck()" action="#{client.finish(login.person.id)}">
                                     <f:param name ="personid" value="11"/>
                                 </h:commandButton>
                             </td>

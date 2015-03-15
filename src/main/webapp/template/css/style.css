@@ -17,7 +17,7 @@ body {
 }
 #page { 
     min-height: 100%;
-    width: 750px;
+    width: 800px;
     padding: 0 20px 20px;
     margin: -2px auto;
     background-color: #ECECEC; /*#F8F8F8; /* #ECECEA */
@@ -98,7 +98,7 @@ table, table.form {
     }
     table.form td {
         padding: 5px;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: normal;
     }
     .right {
@@ -129,11 +129,11 @@ table, table.form {
     float:right;
     width:50%;
 }
-a {
+.footer a {
     color: #fff;
     text-decoration: none;
 }
-a:hover {
+.footer a:hover {
     color: #a8a8a8;
     font-weight: bold;
 }
