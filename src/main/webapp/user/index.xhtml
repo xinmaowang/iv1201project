@@ -6,13 +6,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'></link>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,500italic,300italic,400' rel='stylesheet' type='text/css'></link>
-    <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'></link>
-    <link href = "/user/style.css" rel="stylesheet"></link>        
-    <h:head>
-        <title>Welcome</title>
-        <link href = "style.css" rel="stylesheet"></link>
+    
+    <h:body>
+ 
+    	<ui:composition template="/template/common/layout.xhtml">
+ 
+            <ui:define name="content">
         <h:outputLabel value ="#{client.init()}"/>
         <script language ="javascript">
             function competenceCheck() {
@@ -30,8 +29,7 @@
             }
         </script>
 
-    </h:head>
-    <h:body>
+
         <p>
             <h:outputLabel for="currHolder" rendered="#{!login.succ}"  value="You're have not autorized"/>
             <p></p>
@@ -184,6 +182,10 @@
             
             
         </h:form>
+
+</ui:define>    
+    	</ui:composition>
+ 
     </h:body>
 </html>
 
