@@ -39,6 +39,8 @@ public class ClientManager implements Serializable {
     private Competence[] coffee3List;
     private Exception transactionFailure;
     private boolean successC = false;
+    private boolean exist = false;
+    private boolean change = false;
 
     @Inject
     private Conversation conversation;
@@ -127,6 +129,7 @@ public class ClientManager implements Serializable {
             from_date = new Date(from_year, from_month, from_day);
             to_date = new Date(to_year, to_month, to_day);
             uController.finish(s, from_date, to_date);
+            exist = true;
 
         } catch (Exception e) {
             handleException(e);
@@ -134,24 +137,27 @@ public class ClientManager implements Serializable {
         return jsf22Bugfix();
     }
 
-    public Map<String, Integer> getMonthlist() {
-        Map<String, Integer> month = new LinkedHashMap<String, Integer>();
-        month.put("January", 0);
-        month.put("February", 1);
-        month.put("March", 2);
-        month.put("April", 3);
-        month.put("May", 4);
-        month.put("June", 5);
-        month.put("July", 6);
-        month.put("August", 7);
-        month.put("September", 8);
-        month.put("October", 9);
-        month.put("November", 10);
-        month.put("December", 11);
+    public String ifCom(Long s){
+         try {
+            startConversation();
+            transactionFailure = null;
+            if(uController.ifCom(s)){
+                exist = true;
+            }
 
-        return month;
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
     }
-
+    
+    public String change(){
+       
+        change = true;
+        
+        return jsf22Bugfix();
+    }
+    
     public int getFrom_day() {
         return from_day;
     }
@@ -230,6 +236,17 @@ public class ClientManager implements Serializable {
 
     public boolean isSuccessa() {
         return successa;
+    }
+
+    public boolean isExist() {
+        if(change){
+            return false;
+        }
+        return exist;
+    }
+
+    public boolean isChange() {
+        return change;
     }
 
 }

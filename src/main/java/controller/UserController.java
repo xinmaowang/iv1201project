@@ -24,7 +24,6 @@ import model.Interface.personInterface;
  * A controller. All calls to the model that are executed because of an action
  * taken by the cashier pass through here.
  */
-
 @Stateless
 public class UserController {
 
@@ -41,26 +40,48 @@ public class UserController {
             em.persist(com1);
             em.persist(com2);
             em.persist(com3);
-            
+
         }
     }
 
-    public List<Competence> getCompetenceList(){
-         List<Competence> com = em.createQuery("from Competence m", Competence.class).getResultList();
-         return com;
-    }
-    
-    public void nextArea(Long competence_id, Double years_of_experience, Long person_id){
-        Competence_Profile profile = new Competence_Profile(years_of_experience);
-        profile.setCompetence_id(em.find(Competence.class, competence_id));
-        profile.setPerson_id(em.find(Person.class, person_id));
-        em.persist(profile);
-    }
-    
-    public void finish(Long s, Date from_date, Date to_date){
-        Availability av = new Availability(from_date, to_date);
-        av.setPerson_id(em.find(Person.class, s));
-        em.persist(av);
+    public List<Competence> getCompetenceList() {
+        List<Competence> com = em.createQuery("from Competence m", Competence.class).getResultList();
+        return com;
     }
 
+    public void nextArea(Long competence_id, Double years_of_experience, Long person_id) {
+        if (em.find(Person.class, person_id).getCompetence_profile_id() == null) {
+            Competence_Profile profile = new Competence_Profile(years_of_experience);
+            Person p = em.find(Person.class, person_id);
+            profile.setCompetence_id(em.find(Competence.class, competence_id));
+            em.persist(profile);
+            p.setCompetence_profile_id(profile);
+        }
+
+        Competence_Profile cp = em.find(Person.class, person_id).getCompetence_profile_id();
+        cp.setCompetence_id(em.find(Competence.class, competence_id));
+        cp.setYears_of_experience(years_of_experience);
+
+    }
+
+    public boolean ifCom(Long person_id) {
+        boolean b = false;
+        if (em.find(Person.class, person_id).getAvailability_id() != null) {
+            b = true;
+        }
+        return b;
+    }
+
+    public void finish(Long person_id, Date from_date, Date to_date) {
+        if (em.find(Person.class, person_id).getAvailability_id() == null) {
+            Availability av = new Availability(from_date, to_date);
+            Person p = em.find(Person.class, person_id);
+            em.persist(av);
+            p.setAvailability_id(av);
+        }
+        
+        Availability av = em.find(Person.class, person_id).getAvailability_id();
+        av.setFrom_date(from_date);
+        av.setTo_date(to_date);
+    }
 }

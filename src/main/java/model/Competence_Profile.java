@@ -35,10 +35,6 @@ public class Competence_Profile implements Serializable {
     private Long competence_profile_id;
     
     
-   
-    @OneToOne
-    private Person person_id;
-    
     @OneToOne
     private Competence competence_id;
     
@@ -54,20 +50,20 @@ public class Competence_Profile implements Serializable {
         this.years_of_experience = years_of_experience;
     }
 
-    public Person getPerson_id() {
-        return person_id;
-    }
-
-    public void setPerson_id(Person person_id) {
-        this.person_id = person_id;
-    }
-
     public Competence getCompetence_id() {
         return competence_id;
     }
 
     public void setCompetence_id(Competence competence_id) {
         this.competence_id = competence_id;
+    }
+
+    public Double getYears_of_experience() {
+        return years_of_experience;
+    }
+
+    public void setYears_of_experience(Double years_of_experience) {
+        this.years_of_experience = years_of_experience;
     }
    
 }

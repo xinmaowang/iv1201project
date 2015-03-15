@@ -35,7 +35,15 @@ public class Person implements Serializable,personInterface {
     @OneToOne(cascade={CascadeType.PERSIST})
     @JoinColumn(name = "ROLE_ID")
     private Role role_id;
-     
+    
+    @OneToOne()
+    @JoinColumn(name = "competence_profile_id")
+    private Competence_Profile competence_profile_id;
+    
+    @OneToOne()
+    @JoinColumn(name = "availability_id")
+    private Availability availability_id;
+    
     private String name;
     private String surname;
     private String ssn;
@@ -152,6 +160,24 @@ public class Person implements Serializable,personInterface {
     @Override
     public String toString() {
         return "model.Person[ id=" + id + " ]";
+    }
+
+    @Override
+    public Competence_Profile getCompetence_profile_id() {
+        return competence_profile_id;
+    }
+
+    public void setCompetence_profile_id(Competence_Profile competence_profile_id) {
+        this.competence_profile_id = competence_profile_id;
+    }
+
+    @Override
+    public Availability getAvailability_id() {
+        return availability_id;
+    }
+
+    public void setAvailability_id(Availability availability_id) {
+        this.availability_id = availability_id;
     }
     
 }

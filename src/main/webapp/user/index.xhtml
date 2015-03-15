@@ -6,208 +6,226 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-    
+
     <h:body>
- 
-    	<ui:composition template="/template/common/layout.xhtml">
- 
+
+        <ui:composition template="/template/common/layout.xhtml">
+
             <ui:define name="content">
-        <h:outputLabel value ="#{client.init()}"/>
-        <script language ="javascript">
-            function competenceCheck() {
+                <h:outputLabel value ="#{client.init()}"/>
+                <h:outputLabel value ="#{client.ifCom(login.person.id)}"/>
+                <script language ="javascript">
+                    function competenceCheck() {
 
-                var validation = true;
-                var years = document.getElementById("success:competence:experience").value;
+                        var validation = true;
+                        var years = document.getElementById("success:competence:experience").value;
 
-                if (years == "") {
-                    alert("yakjshda");
-                    validation = false;
-                }
+                        if (years == "") {
+                            alert("yakjshda");
+                            validation = false;
+                        }
 
-                return validation;
+                        return validation;
 
-            }
-        </script>
+                    }
+                </script>
 
 
-        <p>
-            <h:outputLabel for="currHolder" rendered="#{!login.succ}"  value="#{messages.notAuth}"/>
-            <p></p>
-            <h:link rendered="#{!login.succ}" value="#{messages.backToMain}" outcome="/faces/index"/>
-        </p>
-
-        <h:form rendered="#{login.succ}" id="success">
-      
-            <h:form id="competence" rendered="#{!client.successC}">
-                    <table class="form">
-                        <th>#{messages.experience}</th>
-                        <tr>
-                            <td class="left">
-                                <h:outputLabel for="area" value ="#{messages.area}"/>
-                            </td>
-                            <td class="right">
-                                <h:selectOneMenu id="area" value="#{client.competence_id}">
-                                    <f:selectItems value="#{client.favCoffee3Value}" var="c"
-                                                   itemLabel="#{c.competence_name}" itemValue="#{c.competence_id}" />
-                                </h:selectOneMenu>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <h:outputLabel for ="experience" value ="#{messages.experienceYears} "/>
-                            </td>
-                            <td class="right"> 
-                                <h:inputText id ="experience" value="#{client.years_of_experience}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <h:commandButton value ="#{messages.next}" onclick="return competenceCheck()" action ="#{client.nextArea(login.person.id)}">
-                                    <f:param name ="personid" value="11"/>
-                                </h:commandButton>
-                            </td>
-                        </tr>
-                    </table>
+                <p>
+                    <h:outputLabel for="currHolder" rendered="#{!login.succ}"  value="#{messages.notAuth}"/>
+                    <p></p>
+                    <h:link rendered="#{!login.succ}" value="#{messages.backToMain}" outcome="/faces/index"/>
+                </p>
+                
+                <h:form rendered ="#{login.succ}">
+                    <h:form rendered="#{client.exist}" id="success">
+                        <p>Your Profile</p>
+                        <p>#{messages.experience}: #{login.person.competence_profile_id.competence_id.competence_name}</p>
+                        <p>#{messages.availPeriods}: </p>
+                        <p>#{messages.fromDate}: #{login.person.availability_id.from_date.toString()}</p>
+                        <p>#{messages.toDate}: #{login.person.availability_id.to_date.toString()}</p>
+                    
+                        <h:commandButton value="Change profile" action="#{client.change()}"/>
+                    </h:form>
                 </h:form>
-            
-            
-       
-            <h:form id="available_time" rendered ="#{client.successC}">
-                    <table class="form">
-                        <th>#{messages.availPeriods}</th>
-                        <tr>
-                            <td class="left">
-                                <h:outputLabel value ="#{messages.fromDate}"/>
-                            </td>
-                            <td class="right">
-                                <h:selectOneMenu id="day" value="#{client.from_day}">
-                                   <f:selectItem itemValue="1" itemLabel="1" />
-                                   <f:selectItem itemValue="2" itemLabel="2" />
-                                   <f:selectItem itemValue="3" itemLabel="3" />
-                                   <f:selectItem itemValue="4" itemLabel="4" />
-                                   <f:selectItem itemValue="5" itemLabel="5" />
-                                   <f:selectItem itemValue="6" itemLabel="6" />
-                                   <f:selectItem itemValue="7" itemLabel="7" />
-                                   <f:selectItem itemValue="8" itemLabel="8" />
-                                   <f:selectItem itemValue="9" itemLabel="9" />
-                                   <f:selectItem itemValue="10" itemLabel="10" />
-                                   <f:selectItem itemValue="11" itemLabel="11" />
-                                   <f:selectItem itemValue="12" itemLabel="12" />
-                                   <f:selectItem itemValue="13" itemLabel="13" />
-                                   <f:selectItem itemValue="14" itemLabel="14" />
-                                   <f:selectItem itemValue="15" itemLabel="15" />
-                                   <f:selectItem itemValue="16" itemLabel="16" />
-                                   <f:selectItem itemValue="17" itemLabel="17" />
-                                   <f:selectItem itemValue="18" itemLabel="18" />
-                                   <f:selectItem itemValue="19" itemLabel="19" />
-                                   <f:selectItem itemValue="20" itemLabel="20" />
-                                   <f:selectItem itemValue="21" itemLabel="21" />
-                                   <f:selectItem itemValue="22" itemLabel="22" />
-                                   <f:selectItem itemValue="23" itemLabel="23" />
-                                   <f:selectItem itemValue="24" itemLabel="24" />
-                                   <f:selectItem itemValue="25" itemLabel="25" />
-                                   <f:selectItem itemValue="26" itemLabel="26" />
-                                   <f:selectItem itemValue="27" itemLabel="27" />
-                                   <f:selectItem itemValue="28" itemLabel="28" />
-                                   <f:selectItem itemValue="29" itemLabel="29" />
-                                   <f:selectItem itemValue="30" itemLabel="30" />
-                                   <f:selectItem itemValue="31" itemLabel="31" />
-                                </h:selectOneMenu>
-                                
-                                <h:selectOneMenu id="month" value="#{client.from_month}">
-                                   <f:selectItem itemValue="0" itemLabel="#{messages.january}" />
-                                   <f:selectItem itemValue="1" itemLabel="#{messages.february}" />
-                                   <f:selectItem itemValue="2" itemLabel="#{messages.march}" />
-                                   <f:selectItem itemValue="3" itemLabel="#{messages.april}" />
-                                   <f:selectItem itemValue="4" itemLabel="#{messages.may}" />
-                                   <f:selectItem itemValue="5" itemLabel="#{messages.june}" />
-                                   <f:selectItem itemValue="6" itemLabel="#{messages.july}" />
-                                   <f:selectItem itemValue="7" itemLabel="#{messages.august}" />
-                                   <f:selectItem itemValue="8" itemLabel="#{messages.september}" />
-                                   <f:selectItem itemValue="9" itemLabel="#{messages.october}" />
-                                   <f:selectItem itemValue="10" itemLabel="#{messages.november}" />
-                                   <f:selectItem itemValue="11" itemLabel="#{messages.december}" />                                    
-                                </h:selectOneMenu>
-                                
-                                <h:inputText id="year" value="#{client.from_year}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left">
-                                <h:outputLabel value ="#{messages.toDate}"/>
-                            </td>
-                            <td class="right"> 
-                               <h:selectOneMenu id="to_day" value="#{client.to_day}">
-                                   <f:selectItem itemValue="1" itemLabel="1" />
-                                   <f:selectItem itemValue="2" itemLabel="2" />
-                                   <f:selectItem itemValue="3" itemLabel="3" />
-                                   <f:selectItem itemValue="4" itemLabel="4" />
-                                   <f:selectItem itemValue="5" itemLabel="5" />
-                                   <f:selectItem itemValue="6" itemLabel="6" />
-                                   <f:selectItem itemValue="7" itemLabel="7" />
-                                   <f:selectItem itemValue="8" itemLabel="8" />
-                                   <f:selectItem itemValue="9" itemLabel="9" />
-                                   <f:selectItem itemValue="10" itemLabel="10" />
-                                   <f:selectItem itemValue="11" itemLabel="11" />
-                                   <f:selectItem itemValue="12" itemLabel="12" />
-                                   <f:selectItem itemValue="13" itemLabel="13" />
-                                   <f:selectItem itemValue="14" itemLabel="14" />
-                                   <f:selectItem itemValue="15" itemLabel="15" />
-                                   <f:selectItem itemValue="16" itemLabel="16" />
-                                   <f:selectItem itemValue="17" itemLabel="17" />
-                                   <f:selectItem itemValue="18" itemLabel="18" />
-                                   <f:selectItem itemValue="19" itemLabel="19" />
-                                   <f:selectItem itemValue="20" itemLabel="20" />
-                                   <f:selectItem itemValue="21" itemLabel="21" />
-                                   <f:selectItem itemValue="22" itemLabel="22" />
-                                   <f:selectItem itemValue="23" itemLabel="23" />
-                                   <f:selectItem itemValue="24" itemLabel="24" />
-                                   <f:selectItem itemValue="25" itemLabel="25" />
-                                   <f:selectItem itemValue="26" itemLabel="26" />
-                                   <f:selectItem itemValue="27" itemLabel="27" />
-                                   <f:selectItem itemValue="28" itemLabel="28" />
-                                   <f:selectItem itemValue="29" itemLabel="29" />
-                                   <f:selectItem itemValue="30" itemLabel="30" />
-                                   <f:selectItem itemValue="31" itemLabel="31" />
-                                </h:selectOneMenu>
-                                
-                                <h:selectOneMenu id="to_month" value="#{client.to_month}">
-                                   <f:selectItem itemValue="0" itemLabel="#{messages.january}" />
-                                   <f:selectItem itemValue="1" itemLabel="#{messages.february}" />
-                                   <f:selectItem itemValue="2" itemLabel="#{messages.march}" />
-                                   <f:selectItem itemValue="3" itemLabel="#{messages.april}" />
-                                   <f:selectItem itemValue="4" itemLabel="#{messages.may}" />
-                                   <f:selectItem itemValue="5" itemLabel="#{messages.june}" />
-                                   <f:selectItem itemValue="6" itemLabel="#{messages.july}" />
-                                   <f:selectItem itemValue="7" itemLabel="#{messages.august}" />
-                                   <f:selectItem itemValue="8" itemLabel="#{messages.september}" />
-                                   <f:selectItem itemValue="9" itemLabel="#{messages.october}" />
-                                   <f:selectItem itemValue="10" itemLabel="#{messages.november}" />
-                                   <f:selectItem itemValue="11" itemLabel="#{messages.december}" />                                    
-                                </h:selectOneMenu>
-                                
-                                <h:inputText id="to_year" value="#{client.to_year}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <h:commandButton value ="#{messages.next}" onclick="return competenceCheck()" action="#{client.finish(login.person.id)}">
-                                    <f:param name ="personid" value="11"/>
-                                </h:commandButton>
-                            </td>
-                        </tr>
-                    </table>
+                
+                <h:form rendered="#{login.succ}">
+                    <h:form rendered="#{client.exist}">
+                        <hr/>
+                        <h:commandButton value="Logout" action="#{logout.logout()}"/>
+                    </h:form>
+                    
                 </h:form>
-            
-            
-            
-        </h:form>
 
-</ui:define>    
-    	</ui:composition>
- 
+                <h:form rendered="#{login.succ}">
+                    <h:form rendered="#{!client.exist}" id="success">
+
+                        <h:form id="competence" rendered="#{!client.successC}">
+                            <table class="form">
+                                <th>#{messages.experience}</th>
+                                <tr>
+                                    <td class="left">
+                                        <h:outputLabel for="area" value ="#{messages.area}"/>
+                                    </td>
+                                    <td class="right">
+                                        <h:selectOneMenu id="area" value="#{client.competence_id}">
+                                            <f:selectItems value="#{client.favCoffee3Value}" var="c"
+                                                           itemLabel="#{c.competence_name}" itemValue="#{c.competence_id}" />
+                                        </h:selectOneMenu>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <h:outputLabel for ="experience" value ="#{messages.experienceYears} "/>
+                                    </td>
+                                    <td class="right"> 
+                                        <h:inputText id ="experience" value="#{client.years_of_experience}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <h:commandButton value ="#{messages.next}" onclick="return competenceCheck()" action ="#{client.nextArea(login.person.id)}">
+                                            <f:param name ="personid" value="11"/>
+                                        </h:commandButton>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
+
+                        <h:form id="available_time" rendered ="#{client.successC}">
+                            <table class="form">
+                                <th>#{messages.availPeriods}</th>
+                                <tr>
+                                    <td class="left">
+                                        <h:outputLabel value ="#{messages.fromDate}"/>
+                                    </td>
+                                    <td class="right">
+                                        <h:selectOneMenu id="day" value="#{client.from_day}">
+                                            <f:selectItem itemValue="1" itemLabel="1" />
+                                            <f:selectItem itemValue="2" itemLabel="2" />
+                                            <f:selectItem itemValue="3" itemLabel="3" />
+                                            <f:selectItem itemValue="4" itemLabel="4" />
+                                            <f:selectItem itemValue="5" itemLabel="5" />
+                                            <f:selectItem itemValue="6" itemLabel="6" />
+                                            <f:selectItem itemValue="7" itemLabel="7" />
+                                            <f:selectItem itemValue="8" itemLabel="8" />
+                                            <f:selectItem itemValue="9" itemLabel="9" />
+                                            <f:selectItem itemValue="10" itemLabel="10" />
+                                            <f:selectItem itemValue="11" itemLabel="11" />
+                                            <f:selectItem itemValue="12" itemLabel="12" />
+                                            <f:selectItem itemValue="13" itemLabel="13" />
+                                            <f:selectItem itemValue="14" itemLabel="14" />
+                                            <f:selectItem itemValue="15" itemLabel="15" />
+                                            <f:selectItem itemValue="16" itemLabel="16" />
+                                            <f:selectItem itemValue="17" itemLabel="17" />
+                                            <f:selectItem itemValue="18" itemLabel="18" />
+                                            <f:selectItem itemValue="19" itemLabel="19" />
+                                            <f:selectItem itemValue="20" itemLabel="20" />
+                                            <f:selectItem itemValue="21" itemLabel="21" />
+                                            <f:selectItem itemValue="22" itemLabel="22" />
+                                            <f:selectItem itemValue="23" itemLabel="23" />
+                                            <f:selectItem itemValue="24" itemLabel="24" />
+                                            <f:selectItem itemValue="25" itemLabel="25" />
+                                            <f:selectItem itemValue="26" itemLabel="26" />
+                                            <f:selectItem itemValue="27" itemLabel="27" />
+                                            <f:selectItem itemValue="28" itemLabel="28" />
+                                            <f:selectItem itemValue="29" itemLabel="29" />
+                                            <f:selectItem itemValue="30" itemLabel="30" />
+                                            <f:selectItem itemValue="31" itemLabel="31" />
+                                        </h:selectOneMenu>
+
+                                        <h:selectOneMenu id="month" value="#{client.from_month}">
+                                            <f:selectItem itemValue="0" itemLabel="#{messages.january}" />
+                                            <f:selectItem itemValue="1" itemLabel="#{messages.february}" />
+                                            <f:selectItem itemValue="2" itemLabel="#{messages.march}" />
+                                            <f:selectItem itemValue="3" itemLabel="#{messages.april}" />
+                                            <f:selectItem itemValue="4" itemLabel="#{messages.may}" />
+                                            <f:selectItem itemValue="5" itemLabel="#{messages.june}" />
+                                            <f:selectItem itemValue="6" itemLabel="#{messages.july}" />
+                                            <f:selectItem itemValue="7" itemLabel="#{messages.august}" />
+                                            <f:selectItem itemValue="8" itemLabel="#{messages.september}" />
+                                            <f:selectItem itemValue="9" itemLabel="#{messages.october}" />
+                                            <f:selectItem itemValue="10" itemLabel="#{messages.november}" />
+                                            <f:selectItem itemValue="11" itemLabel="#{messages.december}" />                                    
+                                        </h:selectOneMenu>
+
+                                        <h:inputText id="year" value="#{client.from_year}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="left">
+                                        <h:outputLabel value ="#{messages.toDate}"/>
+                                    </td>
+                                    <td class="right"> 
+                                        <h:selectOneMenu id="to_day" value="#{client.to_day}">
+                                            <f:selectItem itemValue="1" itemLabel="1" />
+                                            <f:selectItem itemValue="2" itemLabel="2" />
+                                            <f:selectItem itemValue="3" itemLabel="3" />
+                                            <f:selectItem itemValue="4" itemLabel="4" />
+                                            <f:selectItem itemValue="5" itemLabel="5" />
+                                            <f:selectItem itemValue="6" itemLabel="6" />
+                                            <f:selectItem itemValue="7" itemLabel="7" />
+                                            <f:selectItem itemValue="8" itemLabel="8" />
+                                            <f:selectItem itemValue="9" itemLabel="9" />
+                                            <f:selectItem itemValue="10" itemLabel="10" />
+                                            <f:selectItem itemValue="11" itemLabel="11" />
+                                            <f:selectItem itemValue="12" itemLabel="12" />
+                                            <f:selectItem itemValue="13" itemLabel="13" />
+                                            <f:selectItem itemValue="14" itemLabel="14" />
+                                            <f:selectItem itemValue="15" itemLabel="15" />
+                                            <f:selectItem itemValue="16" itemLabel="16" />
+                                            <f:selectItem itemValue="17" itemLabel="17" />
+                                            <f:selectItem itemValue="18" itemLabel="18" />
+                                            <f:selectItem itemValue="19" itemLabel="19" />
+                                            <f:selectItem itemValue="20" itemLabel="20" />
+                                            <f:selectItem itemValue="21" itemLabel="21" />
+                                            <f:selectItem itemValue="22" itemLabel="22" />
+                                            <f:selectItem itemValue="23" itemLabel="23" />
+                                            <f:selectItem itemValue="24" itemLabel="24" />
+                                            <f:selectItem itemValue="25" itemLabel="25" />
+                                            <f:selectItem itemValue="26" itemLabel="26" />
+                                            <f:selectItem itemValue="27" itemLabel="27" />
+                                            <f:selectItem itemValue="28" itemLabel="28" />
+                                            <f:selectItem itemValue="29" itemLabel="29" />
+                                            <f:selectItem itemValue="30" itemLabel="30" />
+                                            <f:selectItem itemValue="31" itemLabel="31" />
+                                        </h:selectOneMenu>
+
+                                        <h:selectOneMenu id="to_month" value="#{client.to_month}">
+                                            <f:selectItem itemValue="0" itemLabel="#{messages.january}" />
+                                            <f:selectItem itemValue="1" itemLabel="#{messages.february}" />
+                                            <f:selectItem itemValue="2" itemLabel="#{messages.march}" />
+                                            <f:selectItem itemValue="3" itemLabel="#{messages.april}" />
+                                            <f:selectItem itemValue="4" itemLabel="#{messages.may}" />
+                                            <f:selectItem itemValue="5" itemLabel="#{messages.june}" />
+                                            <f:selectItem itemValue="6" itemLabel="#{messages.july}" />
+                                            <f:selectItem itemValue="7" itemLabel="#{messages.august}" />
+                                            <f:selectItem itemValue="8" itemLabel="#{messages.september}" />
+                                            <f:selectItem itemValue="9" itemLabel="#{messages.october}" />
+                                            <f:selectItem itemValue="10" itemLabel="#{messages.november}" />
+                                            <f:selectItem itemValue="11" itemLabel="#{messages.december}" />                                    
+                                        </h:selectOneMenu>
+
+                                        <h:inputText id="to_year" value="#{client.to_year}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <h:commandButton value ="#{messages.next}" onclick="return competenceCheck()" action="#{client.finish(login.person.id)}">
+                                            <f:param name ="personid" value="11"/>
+                                        </h:commandButton>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
+                    </h:form>
+                </h:form>
+
+            </ui:define>    
+        </ui:composition>
+
     </h:body>
 </html>
 

@@ -32,8 +32,6 @@ public class Availability implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long availability_id;
 
-    @OneToOne()
-    private Person person_id;
 
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date from_date;
@@ -49,14 +47,6 @@ public class Availability implements Serializable {
         this.availability_id = new Long(rand.nextInt(Integer.MAX_VALUE) + 1);
         this.from_date = from_date;
         this.to_date = to_date;
-    }
-
-    public Person getPerson_id() {
-        return person_id;
-    }
-
-    public void setPerson_id(Person person_id) {
-        this.person_id = person_id;
     }
 
     public Date getFrom_date() {

@@ -5,6 +5,8 @@
  */
 package model.Interface;
 
+import model.Availability;
+import model.Competence_Profile;
 import model.Role;
 
 /**
@@ -18,4 +20,6 @@ public interface personInterface {
     public String getEmail();
     public String getSsn();
     public Role getRole_id();
+    public Availability getAvailability_id();
+   public Competence_Profile getCompetence_profile_id();
 }
