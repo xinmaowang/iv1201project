@@ -21,9 +21,9 @@
                 <h:form rendered="#{login.succAdmin}" >
 
                     <h:form id="PDF">
-                        <h:outputLabel for="personid" value="Choose a applicants persion id: "/>
+                        <h:outputLabel for="personid" value="#{messages.applicantsId}"/>
                         <h:inputText id="personid" value="#{employee.person_id}"/>
-                        <h:commandButton value="create PDF" action="#{employee.createPDF()}" onclick="this.form.target = '_blank'"/>
+                        <h:commandButton value="#{messages.createPdf}" action="#{employee.createPDF()}" onclick="this.form.target = '_blank'"/>
                     </h:form>
 
                 </h:form>
@@ -32,7 +32,7 @@
                 <h:form rendered="#{login.succAdmin}" >
 
                     <h:form id ="list">
-                        <h:commandButton value="Show all applications" action="#{employee.list()}"/>
+                        <h:commandButton value="#{messages.showAllAppl}" action="#{employee.list()}"/>
                         <table>
                             <ui:repeat var="o" value="#{employee.personList}" varStatus="status">
                                 <tr>
@@ -52,7 +52,7 @@
 
                 <h:form rendered="#{login.succAdmin}" >
 
-                    <h:commandButton value="Logout" action="#{logout.logout()}"/>
+                    <h:commandButton value="#{messages.logOut}" action="#{logout.logout()}"/>
 
                 </h:form>
 
