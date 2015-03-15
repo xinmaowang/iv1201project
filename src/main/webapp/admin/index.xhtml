@@ -5,25 +5,58 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    
-    
-        <h:body>
- 
-    	<ui:composition template="/template/common/layout.xhtml">
- 
-        <ui:define name="content">
-        <p>
-            <h:outputLabel for="currHolder" rendered="#{!login.succAdmin}"  value="#{messages.notAuth}"/>
-            <p></p>
-            <h:link rendered="#{!login.succAdmin}" value="#{messages.backToMain}" outcome="/faces/index"/>
-        </p>
-       
-        <h:form rendered="#{login.succAdmin}" >
-            <p>
-                Admin Success
-            </p>
-        </h:form>
-        </ui:define>
+
+
+    <h:body>
+
+        <ui:composition template="/template/common/layout.xhtml">
+
+            <ui:define name="content">
+                <p>
+                    <h:outputLabel for="currHolder" rendered="#{!login.succAdmin}"  value="#{messages.notAuth}"/>
+                    <p></p>
+                    <h:link rendered="#{!login.succAdmin}" value="#{messages.backToMain}" outcome="/faces/index"/>
+                </p>
+
+                <h:form rendered="#{login.succAdmin}" >
+
+                    <h:form id="PDF">
+                        <h:outputLabel for="personid" value="Choose a applicants persion id: "/>
+                        <h:inputText id="personid" value="#{employee.person_id}"/>
+                        <h:commandButton value="create PDF" action="#{employee.createPDF()}" onclick="this.form.target = '_blank'"/>
+                    </h:form>
+
+                </h:form>
+
+                <hr/>
+                <h:form rendered="#{login.succAdmin}" >
+
+                    <h:form id ="list">
+                        <h:commandButton value="Show all applications" action="#{employee.list()}"/>
+                        <table>
+                            <ui:repeat var="o" value="#{employee.personList}" varStatus="status">
+                                <tr>
+                                    <td>#{o.id}&nbsp;&nbsp;</td>
+                                    <td>#{messages.name}: #{o.name}&nbsp;</td>
+                                    <td>#{messages.surname}: #{o.surname}&nbsp;</td>
+                                    <td>#{messages.email}: #{o.email}&nbsp;</td>
+                                    <td>#{messages.ssn}: #{o.ssn}&nbsp;</td>
+                                </tr>
+                            </ui:repeat>
+                        </table>
+
+                    </h:form>
+                </h:form>
+
+                <hr/>
+
+                <h:form rendered="#{login.succAdmin}" >
+
+                    <h:commandButton value="Logout" action="#{logout.logout()}"/>
+
+                </h:form>
+
+            </ui:define>
         </ui:composition>
     </h:body>
 

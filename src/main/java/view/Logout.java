@@ -3,16 +3,22 @@ package view;
 import controller.Controller;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.Interface.personInterface;
 import model.Interface.roleInterface;
 
 @Named("logout")
-@ConversationScoped
+@RequestScoped
 public class Logout implements Serializable {
 
     private static final long serialVersionUID = 16247164405L;
@@ -21,28 +27,9 @@ public class Logout implements Serializable {
     private Controller controller;
     private boolean succ = false;
     private Exception transactionFailure;
-   
-   
+
     @Inject
     private Conversation conversation;
-
-    private void startConversation() {
-        if (conversation.isTransient()) {
-            conversation.begin();
-        }
-    }
-
-    private void stopConversation() {
-        if (!conversation.isTransient()) {
-            conversation.end();
-        }
-    }
-
-    private void handleException(Exception e) {
-        stopConversation();
-        e.printStackTrace(System.err);
-        transactionFailure = e;
-    }
 
     /**
      * @return <code>true</code> if the latest transaction succeeded, otherwise
@@ -51,8 +38,6 @@ public class Logout implements Serializable {
     public boolean getSuccess() {
         return transactionFailure == null;
     }
-
-
 
     /**
      * Returns the latest thrown exception.
@@ -73,31 +58,46 @@ public class Logout implements Serializable {
     private String jsf22Bugfix() {
         return "";
     }
-    
-    public void init(){
+
+    public void init() {
         controller.init();
     }
-    
-    
-    public String backToMain() {
-        try {
-            //startConversation();
-            transactionFailure = null;
-            
-            succ = true;
 
-        } catch (Exception e) {
-            handleException(e);
-        }
+    public String backToMain() {
+
+        transactionFailure = null;
+
         return jsf22Bugfix();
     }
-    
-       
+
+    public String logout() {
+        // Notice the redirect syntax. The forward slash means start at
+        // the root of the web application.
+        String destination = "/index?faces-redirect=true";
+
+        // FacesContext provides access to other container managed objects,
+        // such as the HttpServletRequest object, which is needed to perform
+        // the logout operation.
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request
+                = (HttpServletRequest) context.getExternalContext().getRequest();
+
+        try {
+            // added May 12, 2014
+            HttpSession session = request.getSession();
+            session.invalidate();
+
+            // this does not invalidate the session but does null out the user Principle
+            request.logout();
+        } catch (ServletException e) {
+            destination = "/loginerror?faces-redirect=true";
+        }
+
+        return destination; // go to destination
+    }
 
     public boolean getSucc() {
         return succ;
     }
 
-
- 
 }

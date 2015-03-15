@@ -1,6 +1,6 @@
 package view;
 
-
+import controller.AdminController;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -8,6 +8,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import model.Person;
 
 @Named("employee")
 @ConversationScoped
@@ -16,15 +17,12 @@ public class EmployeeManager implements Serializable {
     private static final long serialVersionUID = 16247164405L;
     @EJB
 
-   
-    private String username;
-    private String password;
-    private float balance;
-    private String gnomename;
-    private int unit;
+    private AdminController ac;
+    private Long person_id;
+    private Person[] personList;
     private Exception transactionFailure;
     private boolean succes = false;
-   
+
     @Inject
     private Conversation conversation;
 
@@ -54,8 +52,6 @@ public class EmployeeManager implements Serializable {
         return transactionFailure == null;
     }
 
-
-
     /**
      * Returns the latest thrown exception.
      */
@@ -75,7 +71,53 @@ public class EmployeeManager implements Serializable {
     private String jsf22Bugfix() {
         return "";
     }
-    
 
- 
+    public String list() {
+
+        try {
+            startConversation();
+            transactionFailure = null;
+
+            List<Person> list = ac.getPersonList();
+            int i = 0;
+            personList = new Person[list.size()];
+            for (Person p : list) {
+                personList[i] = p;
+                i++;
+            }
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
+
+    }
+    
+     public String createPDF() {
+
+        try {
+            startConversation();
+            transactionFailure = null;
+
+            ac.createPDF(person_id);
+
+        } catch (Exception e) {
+            handleException(e);
+        }
+        return jsf22Bugfix();
+
+    }
+
+    public Long getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(Long person_id) {
+        this.person_id = person_id;
+    }
+
+    public Person[] getPersonList() {
+        return personList;
+    }
+
 }
