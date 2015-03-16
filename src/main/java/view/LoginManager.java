@@ -12,6 +12,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import model.Interface.personInterface;
 import model.Interface.roleInterface;
+import validation.ValidPassword;
+import validation.ValidSsn;
 import validation.ValidUsername;
 
 @Named("login")
@@ -26,10 +28,12 @@ public class LoginManager implements Serializable {
     @ValidUsername
     private String username;
     
+    @ValidPassword
     private String password;
     private String name;
     private String surname;
     
+    @ValidSsn
     private String ssn;
     
     @ValidEmail
@@ -94,8 +98,8 @@ public class LoginManager implements Serializable {
         return "";
     }
 
-    public void init() {
-        controller.init();
+    public void init(String locale) {
+        controller.init(locale);
     }
 
     public String login(String locale) {

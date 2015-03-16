@@ -39,12 +39,8 @@ public @interface ValidPassword {
                 return false;
             }
             
-             try {
-                Integer.parseInt(value);
-            } catch (NumberFormatException nfe) {
-                return false;
-            }
-            return value.length() == 10;
+          
+            return true;
 
         }
 

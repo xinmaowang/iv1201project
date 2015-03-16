@@ -72,13 +72,13 @@ public class EmployeeManager implements Serializable {
         return "";
     }
 
-    public String list() {
+    public String list(String locale) {
 
         try {
             startConversation();
             transactionFailure = null;
 
-            List<Person> list = ac.getPersonList();
+            List<Person> list = ac.getPersonList(locale);
             int i = 0;
             personList = new Person[list.size()];
             for (Person p : list) {
@@ -93,13 +93,13 @@ public class EmployeeManager implements Serializable {
 
     }
     
-     public String createPDF() {
+     public String createPDF(String locale) {
 
         try {
             startConversation();
             transactionFailure = null;
 
-            ac.createPDF(person_id);
+            ac.createPDF(person_id, locale);
 
         } catch (Exception e) {
             handleException(e);

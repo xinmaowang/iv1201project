@@ -5,6 +5,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.validation.Constraint;
@@ -27,34 +28,22 @@ public @interface ValidFromDate {
 
     Class<? extends Payload>[] payload() default {};
 
-    class FromDateValidator implements ConstraintValidator<ValidFromDate, String> {
+    class FromDateValidator implements ConstraintValidator<ValidFromDate, Integer> {
 
         @Override
         public void initialize(ValidFromDate constraintAnnotation) {
         }
 
         @Override
-        public boolean isValid(String value, ConstraintValidatorContext context) {
-            if(isEmpty(value, context)){
-                return false;
-            }
+        public boolean isValid(Integer value, ConstraintValidatorContext context) {
+
+            Date d = new Date();
             
-             try {
-                Integer.parseInt(value);
-            } catch (NumberFormatException nfe) {
-                return false;
-            }
-            return value.length() == 10;
+            Integer year = d.getYear() + 1900;
+            
+            return value >= year;
 
         }
 
-        private boolean isEmpty(String value, ConstraintValidatorContext context) {
-            if (value.length() == 0) {
-                context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate("{validation.ValidFromDate.noFromDate}").addConstraintViolation();
-                return true;
-            }
-            return false;
-        }
     }
 }

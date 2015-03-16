@@ -18,12 +18,12 @@
                     <h:link rendered="#{!login.succAdmin}" value="#{messages.backToMain}" outcome="/faces/index"/>
                 </p>
 
-                <h:form rendered="#{login.succAdmin}" >
+                <h:form id="succ" rendered="#{login.succAdmin}" >
 
                     <h:form id="PDF">
                         <h:outputLabel for="personid" value="#{messages.applicantsId}"/>
                         <h:inputText id="personid" value="#{employee.person_id}"/>
-                        <h:commandButton value="#{messages.createPdf}" action="#{employee.createPDF()}" onclick="this.form.target = '_blank'"/>
+                        <h:commandButton value="#{messages.createPdf}" action="#{employee.createPDF(locale.s)}" onclick="return valid();"/>
                     </h:form>
 
                 </h:form>
@@ -32,15 +32,23 @@
                 <h:form rendered="#{login.succAdmin}" >
 
                     <h:form id ="list">
-                        <h:commandButton value="#{messages.showAllAppl}" action="#{employee.list()}"/>
+                        <h:commandButton value="#{messages.showAllAppl}" action="#{employee.list(locale.s)}"/>
                         <table>
+                            <tr>
+                                <td>ID: </td>
+                                <td>#{messages.name}: </td>
+                                <td>#{messages.surname}: </td>
+                                <td>#{messages.email}: </td>
+                                <td>#{messages.ssn}: </td>
+                            </tr>
+
                             <ui:repeat var="o" value="#{employee.personList}" varStatus="status">
                                 <tr>
                                     <td>#{o.id}&nbsp;&nbsp;</td>
-                                    <td>#{messages.name}: #{o.name}&nbsp;</td>
-                                    <td>#{messages.surname}: #{o.surname}&nbsp;</td>
-                                    <td>#{messages.email}: #{o.email}&nbsp;</td>
-                                    <td>#{messages.ssn}: #{o.ssn}&nbsp;</td>
+                                    <td>#{o.name}&nbsp;</td>
+                                    <td>#{o.surname}&nbsp;</td>
+                                    <td>#{o.email}&nbsp;</td>
+                                    <td>#{o.ssn}&nbsp;</td>
                                 </tr>
                             </ui:repeat>
                         </table>
@@ -55,6 +63,21 @@
                     <h:commandButton value="#{messages.logOut}" action="#{logout.logout()}"/>
 
                 </h:form>
+                
+                  <script language="javascript">
+                function valid(){
+                    var validation = true;
+                    var id = document.getElementById("succ:PDF:personid");
+                   
+                    
+                    if(id.value == ""){
+                        alert("You must enter the id");
+                        validation = false;
+                    }
+                    
+                    return validation;
+                }
+            </script>
 
             </ui:define>
         </ui:composition>

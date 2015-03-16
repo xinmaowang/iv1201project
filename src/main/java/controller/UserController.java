@@ -29,8 +29,11 @@ public class UserController {
 
     @PersistenceContext(unitName = "group12_IV1201Project_war_1.0-SNAPSHOTPU")
     private EntityManager em;
+    private Resource res = new Resource();
 
-    public void init() {
+    public void init(String locale) {
+        try {
+            res.resourceBundle(locale);
         if (em.find(Competence.class, new Long(1)) == null) {
             Competence com = new Competence(new Long(1), "Java");
             Competence com1 = new Competence(null, "C++");
@@ -40,7 +43,9 @@ public class UserController {
             em.persist(com1);
             em.persist(com2);
             em.persist(com3);
-
+        }
+        } catch(Exception e){
+            throw new EntityNotFoundException(res.bundle.getString("somethingWrong"));
         }
     }
 

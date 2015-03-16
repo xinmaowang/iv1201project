@@ -27,31 +27,29 @@ public @interface ValidYoE {
 
     Class<? extends Payload>[] payload() default {};
 
-    class YoEValidator implements ConstraintValidator<ValidYoE, String> {
+    class YoEValidator implements ConstraintValidator<ValidYoE, Double> {
 
         @Override
         public void initialize(ValidYoE constraintAnnotation) {
         }
 
         @Override
-        public boolean isValid(String value, ConstraintValidatorContext context) {
+        public boolean isValid(Double value, ConstraintValidatorContext context) {
             if(isEmpty(value, context)){
                 return false;
             }
             
-             try {
-                Integer.parseInt(value);
-            } catch (NumberFormatException nfe) {
+            if(value > 50){
                 return false;
             }
-            return 0 >= Integer.parseInt(value)&& Integer.parseInt(value)<=50;
+             return true;
 
         }
 
-        private boolean isEmpty(String value, ConstraintValidatorContext context) {
-            if (value.length() == 0) {
+        private boolean isEmpty(Double value, ConstraintValidatorContext context) {
+            if (value == null) {
                 context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate("{validation.ValidYoE.noYoE}").addConstraintViolation();
+                context.buildConstraintViolationWithTemplate("{validation.ValidYoE.invalidYoE}").addConstraintViolation();
                 return true;
             }
             return false;

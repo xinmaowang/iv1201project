@@ -38,25 +38,37 @@ public class AdminController {
 
     @PersistenceContext(unitName = "group12_IV1201Project_war_1.0-SNAPSHOTPU")
     private EntityManager em;
-
-    public List<Person> getPersonList() {
-        Account ac = em.find(Account.class, "user");
-        Role role = ac.getPerson_id().getRole_id();
+    private Resource res = new Resource();
+    
+    
+    
+    
+    public List<Person> getPersonList(String locale) {
+        
         String queryString = "SELECT a FROM Person a "
                 + "WHERE a.role_id = :role_id";
         Query query = em.createQuery(queryString);
-        query.setParameter("role_id", role);
+        res.resourceBundle(locale);
+        try {
+            Account ac = em.find(Account.class, "user");
+            Role role = ac.getPerson_id().getRole_id();
+
+            query.setParameter("role_id", role);
+        } catch (Exception e) {
+            throw new EntityNotFoundException(res.bundle.getString("somethingWrong"));
+        }
         return query.getResultList();
 
     }
 
-    public void createPDF(Long person_id) {
+    public void createPDF(Long person_id, String locale) throws IOException {
+        res.resourceBundle(locale);
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-        
+
         Person p = em.find(Person.class, person_id);
-        
-        String s = "ID: " + p.getId() + ",  Name: " + p.getName() + ",  Surname: " + p.getSurname() 
+
+        String s = "ID: " + p.getId() + ",  Name: " + p.getName() + ",  Surname: " + p.getSurname()
                 + ",  SSN: " + p.getSsn() + ",  Email: " + p.getEmail();
 
         Document a = new Document();
@@ -69,7 +81,7 @@ public class AdminController {
             a.add(new Paragraph(s));
             a.add(new Paragraph(new Date().toString()));
         } catch (IOException | DocumentException e) {
-            System.err.println(e);
+            throw new IOException(res.bundle.getString("somethingWrong"));
         }
         fc.responseComplete();
         a.close();

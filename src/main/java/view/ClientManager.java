@@ -15,6 +15,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.Competence;
+import validation.ValidFromDate;
+import validation.ValidYoE;
 
 @Named("client")
 @ConversationScoped
@@ -28,13 +30,16 @@ public class ClientManager implements Serializable {
     private String c;
     private int from_day;
     private int from_month;
+    @ValidFromDate
     private int from_year;
     private int to_day;
     private int to_month;
+    @ValidFromDate
     private int to_year;
     private Date from_date;
     private Date to_date;
     private boolean successa = false;
+    @ValidYoE
     private Double years_of_experience;
     private Competence[] coffee3List;
     private Exception transactionFailure;
@@ -91,8 +96,8 @@ public class ClientManager implements Serializable {
         return "";
     }
 
-    public void init() {
-        uController.init();
+    public void init(String locale) {
+        uController.init(locale);
     }
 
     public String nextArea(Long s) {
