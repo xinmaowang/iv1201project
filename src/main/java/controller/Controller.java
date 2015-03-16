@@ -80,9 +80,7 @@ public class Controller {
         } catch (Exception e) {
             throw new NullPointerException("Something Wrong");
         }
-        
-        try {
-            
+       
             Account account = em.find(Account.class, username);
             
             if (account == null) {
@@ -95,10 +93,7 @@ public class Controller {
                 return "success";
             }
             return "Not Success";
-        } catch (Exception e) {
-            throw new NullPointerException(bundle.getString("somethingWrong"));
-        }
-        
+     
     }
     
 }
