@@ -45,14 +45,14 @@
                         <p>#{messages.fromDate}: #{login.person.availability_id.from_date.toString()}</p>
                         <p>#{messages.toDate}: #{login.person.availability_id.to_date.toString()}</p>
                     
-                        <h:commandButton value="Change profile" action="#{client.change()}"/>
+                        <h:commandButton value="Change profile" action="#{client.change()}" />
                     </h:form>
                 </h:form>
                 
                 <h:form rendered="#{login.succ}">
                     <h:form rendered="#{client.exist}">
                         <hr/>
-                        <h:commandButton value="Logout" action="#{logout.logout()}"/>
+                        <h:commandButton value="Logout" action="#{logout.logout()}" />
                     </h:form>
                     
                 </h:form>
