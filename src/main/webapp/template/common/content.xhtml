@@ -38,7 +38,7 @@ and open the template in the editor.
                         <tr>
                             <td></td>
                             <td>
-                                <h:commandButton value ="#{messages.login}" onclick="return loginCheck()" action ="#{login.login()}"/>
+                                <h:commandButton value ="#{messages.login}" onclick="return loginCheck()" action ="#{login.login(locale.s)}"/>
                             </td>
                         </tr>
 
@@ -103,7 +103,7 @@ and open the template in the editor.
                             <tr>
                                 <td></td>
                                 <td>
-                                    <h:commandButton value ="#{messages.reg}" action ="#{login.newAccount()}"/>
+                                    <h:commandButton value ="#{messages.reg}" action ="#{login.newAccount(locale.s)}"/>
                                 </td>
                             </tr>
                         </table>
@@ -111,8 +111,6 @@ and open the template in the editor.
                 </div>    
             </f:view>
             
-            <h:outputLabel rendered="#{!login.resultLogin}" value="#{messages.loginError}"/>
-            <h:outputLabel rendered="#{!login.result}" value="#{messages.existAccount}"/>
 
             <script language="javascript">
                 function loginCheck(){

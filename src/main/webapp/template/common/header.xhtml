@@ -20,6 +20,7 @@ and open the template in the editor.
         
         <div class ="lang">
             <h:outputLabel value="#{login.init()}"/>
+            <h:outputLabel value="#{locale.initLocale()}"/>
             <h:form>
                 <h:commandLink action="#{locale.changeLocale}" >
                     <f:param name="languageCode" value="sv"/>

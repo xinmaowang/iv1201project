@@ -5,11 +5,20 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     
     <application>
+        
         <resource-bundle>
             <base-name>view.Messages</base-name>
             <var>messages</var>
         </resource-bundle>
     </application>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <if>#{!login.success}</if>
+            <to-view-id>/loggingerror.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>

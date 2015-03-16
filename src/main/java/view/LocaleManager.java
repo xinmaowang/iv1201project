@@ -11,13 +11,26 @@ import javax.inject.Named;
 @Named(value="locale")
 @ApplicationScoped
 public class LocaleManager {
+    
+    private String s = "sv";
     public String changeLocale() {
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(getLanguageCode()));
+        getLanguageCode();
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(s));
+        return "";
+    }
+    
+     public String initLocale() {
+        //String s = FacesContext.getCurrentInstance().getViewRoot().getLocale().toString();
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(s));
         return "";
     }
 
-    private String getLanguageCode() {
-        String s = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("languageCode");
+    private void getLanguageCode() {
+        s = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("languageCode");
+        
+    }
+
+    public String getS() {
         return s;
     }
 }

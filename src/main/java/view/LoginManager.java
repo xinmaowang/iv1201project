@@ -98,12 +98,12 @@ public class LoginManager implements Serializable {
         controller.init();
     }
 
-    public String login() {
+    public String login(String locale) {
         try {
             startConversation();
             transactionFailure = null;
             succ = false;
-            person = controller.login(username, password);
+            person = controller.login(username, password, locale);
             if (person != null) {
                 if (person.getRole_id().getName().equals("user")) {
                     succ = true;
@@ -120,14 +120,14 @@ public class LoginManager implements Serializable {
         return jsf22Bugfix();
     }
 
-    public String newAccount() {
+    public String newAccount(String locale) {
         try {
             startConversation();
             transactionFailure = null;
             succ = false;
             newAccount = false;
             au = false;
-            if (controller.newAccount(name, surname, username, password, ssn, email).equals("success")) {
+            if (controller.newAccount(name, surname, username, password, ssn, email, locale).equals("success")) {
                 au = true;
                 newAccount = true;
             } else {
