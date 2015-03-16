@@ -1,15 +1,18 @@
 package view;
 
+import validation.ValidEmail;
 import controller.Controller;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import model.Interface.personInterface;
 import model.Interface.roleInterface;
+import validation.ValidUsername;
 
 @Named("login")
 @ConversationScoped
@@ -19,12 +22,19 @@ public class LoginManager implements Serializable {
     @EJB
 
     private Controller controller;
+    
+    @ValidUsername
     private String username;
+    
     private String password;
     private String name;
     private String surname;
+    
     private String ssn;
+    
+    @ValidEmail
     private String email;
+    
     private boolean succ = false;
     private boolean newAccount = false;
     private boolean succAdmin = false;

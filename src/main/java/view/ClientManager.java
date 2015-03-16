@@ -126,6 +126,7 @@ public class ClientManager implements Serializable {
             startConversation();
             transactionFailure = null;
             successa = true;
+            successC = false;
             from_date = new Date(from_year, from_month, from_day);
             to_date = new Date(to_year, to_month, to_day);
             uController.finish(s, from_date, to_date);

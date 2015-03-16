@@ -22,29 +22,11 @@ import model.Interface.roleInterface;
 public class Logout implements Serializable {
 
     private static final long serialVersionUID = 16247164405L;
-    @EJB
 
-    private Controller controller;
-    private boolean succ = false;
-    private Exception transactionFailure;
 
     @Inject
     private Conversation conversation;
 
-    /**
-     * @return <code>true</code> if the latest transaction succeeded, otherwise
-     * <code>false</code>.
-     */
-    public boolean getSuccess() {
-        return transactionFailure == null;
-    }
-
-    /**
-     * Returns the latest thrown exception.
-     */
-    public Exception getException() {
-        return transactionFailure;
-    }
 
     /**
      * This return value is needed because of a JSF 2.2 bug. Note 3 on page 7-10
@@ -59,16 +41,6 @@ public class Logout implements Serializable {
         return "";
     }
 
-    public void init() {
-        controller.init();
-    }
-
-    public String backToMain() {
-
-        transactionFailure = null;
-
-        return jsf22Bugfix();
-    }
 
     public String logout() {
         // Notice the redirect syntax. The forward slash means start at
@@ -94,10 +66,6 @@ public class Logout implements Serializable {
         }
 
         return destination; // go to destination
-    }
-
-    public boolean getSucc() {
-        return succ;
     }
 
 }
