@@ -51,11 +51,22 @@ public class Person implements Serializable,personInterface {
     private String password;
     private String username;
     
-
+    /**
+     *
+     */
     public Person(){
         
     }
     
+    /**
+     *
+     * @param name
+     * @param surname
+     * @param ssn
+     * @param email
+     * @param password
+     * @param username
+     */
     public Person(String name, String surname, String ssn, String email, String password, String username){
         Random rand = new Random();
         id = new Long(rand.nextInt(Integer.MAX_VALUE)+ 1);
@@ -67,72 +78,136 @@ public class Person implements Serializable,personInterface {
         this.username = username;
     }
     
+    /**
+     *
+     * @return id
+     */
     @Override
     public Long getId() {
         return id;
     }
 
+    /**
+     *
+     * set en ny id
+     */
     public void setId(Long id) {
         this.id = id;
     }
     
+    /**
+     *
+     * @return role_id
+     */
     @Override
     public Role getRole_id() {
         return role_id;
     }
 
+    /**
+     *
+     * set en ny role id
+     */
     public void setRole_id(Role role_id) {
         this.role_id = role_id;
     }
 
+    /**
+     *
+     * @return namn
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * set en ny namn
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return efternamn
+     */
     @Override
     public String getSurname() {
         return surname;
     }
 
+    /**
+     *
+     * set en ny efternamn
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    /**
+     *
+     * @return personnummer
+     */
     @Override
     public String getSsn() {
         return ssn;
     }
 
+    /**
+     *
+     * set en ny personnummer
+     */
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
+    /**
+     *
+     * @return epost adress
+     */
     @Override
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return lösenord
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return användarnamn
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
@@ -162,20 +237,36 @@ public class Person implements Serializable,personInterface {
         return "model.Person[ id=" + id + " ]";
     }
 
+    /**
+     *
+     * @return competence_profile_id
+     */
     @Override
     public Competence_Profile getCompetence_profile_id() {
         return competence_profile_id;
     }
 
+    /**
+     *
+     * @param competence_profile_id
+     */
     public void setCompetence_profile_id(Competence_Profile competence_profile_id) {
         this.competence_profile_id = competence_profile_id;
     }
 
+    /**
+     *
+     * @return availability_id
+     */
     @Override
     public Availability getAvailability_id() {
         return availability_id;
     }
 
+    /**
+     *
+     * @param availability_id
+     */
     public void setAvailability_id(Availability availability_id) {
         this.availability_id = availability_id;
     }

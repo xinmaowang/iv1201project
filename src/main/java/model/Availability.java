@@ -38,10 +38,18 @@ public class Availability implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date to_date;
 
+    /**
+     *
+     */
     public Availability() {
 
     }
 
+    /**
+     * Initrerar värde
+     * @param from_date
+     * @param to_date
+     */
     public Availability(Date from_date, Date to_date) {
         Random rand = new Random();
         this.availability_id = new Long(rand.nextInt(Integer.MAX_VALUE) + 1);
@@ -49,28 +57,44 @@ public class Availability implements Serializable {
         this.to_date = to_date;
     }
 
+    /**
+     * get startdatum
+     * @return
+     */
     public Date getFrom_date() {
         return from_date;
     }
 
+    /**
+     * set startdatum
+     * @param from_date
+     */
     public void setFrom_date(Date from_date) {
         this.from_date = from_date;
     }
 
+    /**
+     * get slutdatum
+     * @return
+     */
     public Date getTo_date() {
         return to_date;
     }
 
+    /**
+     * set slutdatum
+     * @param to_date
+     */
     public void setTo_date(Date to_date) {
         this.to_date = to_date;
     }
 
+    /**
+     * get id
+     * @return
+     */
     public Long getId() {
         return availability_id;
-    }
-
-    public void setId(Long availability_id) {
-        this.availability_id = availability_id;
     }
 
     @Override

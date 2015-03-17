@@ -16,6 +16,10 @@ public class Resource {
 
     ResourceBundle bundle;
 
+    /**
+     * Internationalisering för fel meddelande
+     * @param locale
+     */
     public void resourceBundle(String locale) {
         try {
             String bundleName = "exceptionMessages.ExceptionsMessages";

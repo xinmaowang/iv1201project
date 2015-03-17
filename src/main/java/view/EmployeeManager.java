@@ -10,6 +10,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import model.Person;
 
+/**
+ *
+ * @author Xinmao
+ */
 @Named("employee")
 @ConversationScoped
 public class EmployeeManager implements Serializable {
@@ -54,6 +58,7 @@ public class EmployeeManager implements Serializable {
 
     /**
      * Returns the latest thrown exception.
+     * @return 
      */
     public Exception getException() {
         return transactionFailure;
@@ -72,6 +77,11 @@ public class EmployeeManager implements Serializable {
         return "";
     }
 
+    /**
+     *
+     * @param locale
+     * @return
+     */
     public String list(String locale) {
 
         try {
@@ -93,7 +103,12 @@ public class EmployeeManager implements Serializable {
 
     }
     
-     public String createPDF(String locale) {
+    /**
+     *
+     * @param locale
+     * @return
+     */
+    public String createPDF(String locale) {
 
         try {
             startConversation();
@@ -108,14 +123,26 @@ public class EmployeeManager implements Serializable {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getPerson_id() {
         return person_id;
     }
 
+    /**
+     *
+     * @param person_id
+     */
     public void setPerson_id(Long person_id) {
         this.person_id = person_id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person[] getPersonList() {
         return personList;
     }

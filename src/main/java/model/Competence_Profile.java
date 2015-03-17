@@ -40,28 +40,51 @@ public class Competence_Profile implements Serializable {
     
     private Double years_of_experience;
     
+    /**
+     *
+     */
     public Competence_Profile(){
         
     }
     
+    /**
+     *
+     * @Initrearar värde
+     */
     public Competence_Profile(Double years_of_experience) {
         Random rand = new Random();
         this.competence_profile_id = new Long(rand.nextInt(Integer.MAX_VALUE) + 1);
         this.years_of_experience = years_of_experience;
     }
 
+    /**
+     *
+     * @return competence_id
+     */
     public Competence getCompetence_id() {
         return competence_id;
     }
 
+    /**
+     *
+     * @set en ny competence_id
+     */
     public void setCompetence_id(Competence competence_id) {
         this.competence_id = competence_id;
     }
 
+    /**
+     *
+     * @return years_of_experience
+     */
     public Double getYears_of_experience() {
         return years_of_experience;
     }
 
+    /**
+     *
+     * @set en ny years_of_experience
+     */
     public void setYears_of_experience(Double years_of_experience) {
         this.years_of_experience = years_of_experience;
     }

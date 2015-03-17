@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /**
- *
+ * Entity klassen används för slå upp i databasen med användarnamn
  * @author Yau
  */
 @Entity
@@ -27,30 +27,43 @@ public class Account implements Serializable {
     @OneToOne(cascade={CascadeType.ALL})
     private Person person_id;
     
+    /**
+     * 
+     */
     public Account(){ 
         
     }
 
+    /**
+     * initrerar värder
+     * @param username
+     */
     public Account(String username) {
         this.username = username;
     }
     
-    
-
+    /**
+     * set person_id
+     * @param person_id
+     */
     public void setPerson_id(Person person_id) {
         this.person_id = person_id;
     }
 
+    /**
+     * get person_id
+     * @return
+     */
     public Person getPerson_id() {
         return person_id;
     }
 
+    /**
+     * get användarnamn
+     * @return
+     */
     public String getUsername() {
         return username;
-    }
-
-    public void setId(String username) {
-        this.username = username;
     }
 
     @Override

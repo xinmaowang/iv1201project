@@ -16,6 +16,10 @@ import validation.ValidPassword;
 import validation.ValidSsn;
 import validation.ValidUsername;
 
+/**
+ *
+ * @author Xinmao
+ */
 @Named("login")
 @ConversationScoped
 public class LoginManager implements Serializable {
@@ -80,6 +84,7 @@ public class LoginManager implements Serializable {
 
     /**
      * Returns the latest thrown exception.
+     * @return 
      */
     public Exception getException() {
         return transactionFailure;
@@ -98,10 +103,19 @@ public class LoginManager implements Serializable {
         return "";
     }
 
+    /**
+     *
+     * @param locale
+     */
     public void init(String locale) {
         controller.init(locale);
     }
 
+    /**
+     *
+     * @param locale
+     * @return
+     */
     public String login(String locale) {
         try {
             startConversation();
@@ -124,6 +138,11 @@ public class LoginManager implements Serializable {
         return jsf22Bugfix();
     }
 
+    /**
+     *
+     * @param locale
+     * @return
+     */
     public String newAccount(String locale) {
         try {
             startConversation();
@@ -144,80 +163,156 @@ public class LoginManager implements Serializable {
         return jsf22Bugfix();
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isResultLogin() {
         return resultLogin;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getResult() {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSuccAdmin() {
         return succAdmin;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isNewAccount() {
         boolean b = newAccount;
         newAccount = false;
         return b;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getSucc() {
         return succ;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSurname() {
         return surname;
     }
 
+    /**
+     *
+     * @param surname
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSsn() {
         return ssn;
     }
 
+    /**
+     *
+     * @param ssn
+     */
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public personInterface getPerson() {
         return person;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAu() {
         return au;
     }

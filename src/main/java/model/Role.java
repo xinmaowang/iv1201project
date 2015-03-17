@@ -29,26 +29,43 @@ public class Role implements Serializable, roleInterface{
     
     private String name;
     
+    /**
+     *
+     */
     public Role(){
         
     }
   
+    /**
+     *
+     * @param name
+     */
     public Role(String name){
         Random rand = new Random();
         role_id = new Long(rand.nextInt(Integer.MAX_VALUE)+ 1);
         this.name = name;
     }
    
- 
-
+    /**
+     *
+     * @return role_id
+     */
     public Long getId() {
         return role_id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Long id) {
         this.role_id = id;
     }
     
+    /**
+     *
+     * @return namn
+     */
     @Override
     public String getName(){
         return name;

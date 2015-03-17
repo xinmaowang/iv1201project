@@ -40,9 +40,11 @@ public class AdminController {
     private EntityManager em;
     private Resource res = new Resource();
     
-    
-    
-    
+    /**
+     * Lista för alla sökande
+     * @param locale
+     * @return List<Person>
+     */
     public List<Person> getPersonList(String locale) {
         
         String queryString = "SELECT a FROM Person a "
@@ -61,6 +63,12 @@ public class AdminController {
 
     }
 
+    /**
+     * Läsa av info om personen m.h.a person_id, skapar en pdf fil med infon.
+     * @param person_id
+     * @param locale
+     * @throws IOException
+     */
     public void createPDF(Long person_id, String locale) throws IOException {
         res.resourceBundle(locale);
         FacesContext fc = FacesContext.getCurrentInstance();

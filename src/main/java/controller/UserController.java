@@ -31,6 +31,10 @@ public class UserController {
     private EntityManager em;
     private Resource res = new Resource();
 
+    /**
+     * Initierar värder i databasen 
+     * @param locale
+     */
     public void init(String locale) {
         try {
             res.resourceBundle(locale);
@@ -49,11 +53,21 @@ public class UserController {
         }
     }
 
+    /**
+     * 
+     * @return Lista för alla kompetens
+     */
     public List<Competence> getCompetenceList() {
         List<Competence> com = em.createQuery("from Competence m", Competence.class).getResultList();
         return com;
     }
 
+    /**
+     * Lägga in kompetens för sökande
+     * @param competence_id
+     * @param years_of_experience
+     * @param person_id
+     */
     public void nextArea(Long competence_id, Double years_of_experience, Long person_id) {
         if (em.find(Person.class, person_id).getCompetence_profile_id() == null) {
             Competence_Profile profile = new Competence_Profile(years_of_experience);
@@ -69,6 +83,11 @@ public class UserController {
 
     }
 
+    /**
+     * Controllera om kompetens profil finns redan för användaren
+     * @param person_id
+     * @return boolean 
+     */
     public boolean ifCom(Long person_id) {
         boolean b = false;
         if (em.find(Person.class, person_id).getAvailability_id() != null) {
@@ -77,6 +96,12 @@ public class UserController {
         return b;
     }
 
+    /**
+     * Lägga in lediga period för sökande
+     * @param person_id
+     * @param from_date
+     * @param to_date
+     */
     public void finish(Long person_id, Date from_date, Date to_date) {
         if (em.find(Person.class, person_id).getAvailability_id() == null) {
             Availability av = new Availability(from_date, to_date);

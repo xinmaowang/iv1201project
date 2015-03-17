@@ -13,13 +13,22 @@ import javax.inject.Named;
 public class LocaleManager {
     
     private String s = "sv";
+
+    /**
+     *
+     * @return
+     */
     public String changeLocale() {
         getLanguageCode();
         FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(s));
         return "";
     }
     
-     public String initLocale() {
+    /**
+     *
+     * @return
+     */
+    public String initLocale() {
         //String s = FacesContext.getCurrentInstance().getViewRoot().getLocale().toString();
         FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(s));
         return "";
@@ -30,6 +39,10 @@ public class LocaleManager {
         
     }
 
+    /**
+     *
+     * @return
+     */
     public String getS() {
         return s;
     }

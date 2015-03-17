@@ -31,10 +31,18 @@ public class Competence implements Serializable {
 
     private String competence_name;
 
+    /**
+     *
+     */
     public Competence() {
 
     }
 
+    /**
+     * Initrerar värde
+     * @param competence_id
+     * @param name
+     */
     public Competence(Long competence_id, String name) {
 
         if (competence_id == null) {
@@ -46,10 +54,18 @@ public class Competence implements Serializable {
         this.competence_name = name;
     }
 
+    /**
+     * get kompetens id
+     * @return
+     */
     public Long getCompetence_id() {
         return competence_id;
     }
 
+    /**
+     * get kompetens namn
+     * @return
+     */
     public String getCompetence_name() {
         return competence_name;
     }

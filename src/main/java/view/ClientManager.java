@@ -18,6 +18,10 @@ import model.Competence;
 import validation.ValidFromDate;
 import validation.ValidYoE;
 
+/**
+ *
+ * @author Xinmao
+ */
 @Named("client")
 @ConversationScoped
 public class ClientManager implements Serializable {
@@ -41,7 +45,7 @@ public class ClientManager implements Serializable {
     private boolean successa = false;
     @ValidYoE
     private Double years_of_experience;
-    private Competence[] coffee3List;
+    private Competence[] competenceList;
     private Exception transactionFailure;
     private boolean successC = false;
     private boolean exist = false;
@@ -78,6 +82,7 @@ public class ClientManager implements Serializable {
 
     /**
      * Returns the latest thrown exception.
+     * @return 
      */
     public Exception getException() {
         return transactionFailure;
@@ -96,10 +101,19 @@ public class ClientManager implements Serializable {
         return "";
     }
 
+    /**
+     *
+     * @param locale
+     */
     public void init(String locale) {
         uController.init(locale);
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public String nextArea(Long s) {
         try {
             startConversation();
@@ -113,19 +127,28 @@ public class ClientManager implements Serializable {
         return jsf22Bugfix();
     }
 
-    public Competence[] getFavCoffee3Value() {
+    /**
+     *
+     * @return
+     */
+    public Competence[] getCompetence() {
 
         List<Competence> compe = uController.getCompetenceList();
-        coffee3List = new Competence[compe.size()];
+        competenceList = new Competence[compe.size()];
         int i = 0;
         for (Competence com : compe) {
-            coffee3List[i] = com;
+            competenceList[i] = com;
             i++;
         }
-        return coffee3List;
+        return competenceList;
 
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public String finish(Long s) {
         try {
             startConversation();
@@ -143,6 +166,11 @@ public class ClientManager implements Serializable {
         return jsf22Bugfix();
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public String ifCom(Long s){
          try {
             startConversation();
@@ -157,6 +185,10 @@ public class ClientManager implements Serializable {
         return jsf22Bugfix();
     }
     
+    /**
+     *
+     * @return
+     */
     public String change(){
        
         change = true;
@@ -164,86 +196,170 @@ public class ClientManager implements Serializable {
         return jsf22Bugfix();
     }
     
+    /**
+     *
+     * @return
+     */
     public int getFrom_day() {
         return from_day;
     }
 
+    /**
+     *
+     * @param from_day
+     */
     public void setFrom_day(int from_day) {
         this.from_day = from_day;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getFrom_month() {
         return from_month;
     }
 
+    /**
+     *
+     * @param from_month
+     */
     public void setFrom_month(int from_month) {
         this.from_month = from_month;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getFrom_year() {
         return from_year;
     }
 
+    /**
+     *
+     * @param from_year
+     */
     public void setFrom_year(int from_year) {
         this.from_year = from_year - 1900;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTo_day() {
         return to_day;
     }
 
+    /**
+     *
+     * @param to_day
+     */
     public void setTo_day(int to_day) {
         this.to_day = to_day;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTo_month() {
         return to_month;
     }
 
+    /**
+     *
+     * @param to_month
+     */
     public void setTo_month(int to_month) {
         this.to_month = to_month;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTo_year() {
         return to_year;
     }
 
+    /**
+     *
+     * @param to_year
+     */
     public void setTo_year(int to_year) {
         this.to_year = to_year - 1900;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double getYears_of_experience() {
         return years_of_experience;
     }
 
+    /**
+     *
+     * @param years_of_experience
+     */
     public void setYears_of_experience(Double years_of_experience) {
         this.years_of_experience = years_of_experience;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getCompetence_id() {
         return competence_id;
     }
 
+    /**
+     *
+     * @param competence_id
+     */
     public void setCompetence_id(Long competence_id) {
         this.competence_id = competence_id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getC() {
         return c;
     }
 
+    /**
+     *
+     * @param c
+     */
     public void setC(String c) {
         this.c = c;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSuccessC() {
         return successC;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSuccessa() {
         return successa;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isExist() {
         if(change){
             return false;
@@ -251,6 +367,10 @@ public class ClientManager implements Serializable {
         return exist;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isChange() {
         return change;
     }

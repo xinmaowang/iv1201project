@@ -29,6 +29,10 @@ public class Controller {
     private EntityManager em;
     private Resource res = new Resource();
 
+    /**
+     * Initrerar värder i databasen
+     * @param locale
+     */
     public void init(String locale) {
         try {
             res.resourceBundle(locale);
@@ -54,6 +58,13 @@ public class Controller {
         }
     }
 
+    /**
+     * kontrollerar användarnamn och lösenord för användaren vid inloggning
+     * @param username
+     * @param password
+     * @param locale
+     * @return
+     */
     public personInterface login(String username, String password, String locale) {
 
         res.resourceBundle(locale);
@@ -69,6 +80,17 @@ public class Controller {
         return account.getPerson_id();
     }
 
+    /**
+     * Skapar en ny konto för användaren
+     * @param name
+     * @param surname
+     * @param username
+     * @param password
+     * @param ssn
+     * @param email
+     * @param locale
+     * @return
+     */
     public String newAccount(String name, String surname, String username, String password, String ssn, String email, String locale) {
 
         res.resourceBundle(locale);

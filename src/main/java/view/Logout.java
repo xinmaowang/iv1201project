@@ -17,6 +17,10 @@ import javax.servlet.http.HttpSession;
 import model.Interface.personInterface;
 import model.Interface.roleInterface;
 
+/**
+ *
+ * @author Xinmao
+ */
 @Named("logout")
 @RequestScoped
 public class Logout implements Serializable {
@@ -41,7 +45,10 @@ public class Logout implements Serializable {
         return "";
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String logout() {
         // Notice the redirect syntax. The forward slash means start at
         // the root of the web application.
