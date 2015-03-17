@@ -23,7 +23,7 @@
                     <h:form id="PDF">
                         <h:outputLabel for="personid" value="#{messages.applicantsId}"/>
                         <h:inputText id="personid" value="#{employee.person_id}"/>
-                        <h:commandButton value="#{messages.createPdf}" action="#{employee.createPDF(locale.s)}" onclick="return valid();"/>
+                        <h:commandButton value="#{messages.createPdf}" action="#{employee.createPDF(locale.s)}" />
                     </h:form>
 
                 </h:form>

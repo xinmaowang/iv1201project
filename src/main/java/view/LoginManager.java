@@ -10,6 +10,7 @@ import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import model.Interface.personInterface;
 import model.Interface.roleInterface;
 import validation.ValidPassword;
@@ -143,6 +144,7 @@ public class LoginManager implements Serializable {
      * @param locale
      * @return
      */
+    @Transactional
     public String newAccount(String locale) {
         try {
             startConversation();

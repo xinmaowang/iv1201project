@@ -33,6 +33,7 @@ import model.Interface.personInterface;
  * A controller. All calls to the model that are executed because of an action
  * taken by the cashier pass through here.
  */
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
 public class AdminController {
 
@@ -70,12 +71,22 @@ public class AdminController {
      * @throws IOException
      */
     public void createPDF(Long person_id, String locale) throws IOException {
-        res.resourceBundle(locale);
+           res.resourceBundle(locale);
+        if (person_id == null){
+           return;
+        }
+        
+        Person p = em.find(Person.class, person_id);
+        
+        if (p == null){
+            return;
+        }
+        
+     
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 
-        Person p = em.find(Person.class, person_id);
-
+        
         String s = "ID: " + p.getId() + ",  Name: " + p.getName() + ",  Surname: " + p.getSurname()
                 + ",  SSN: " + p.getSsn() + ",  Email: " + p.getEmail();
 

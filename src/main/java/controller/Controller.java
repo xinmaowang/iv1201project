@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javax.ejb.SessionContext;
 import model.Interface.roleInterface;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,17 +17,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import model.Interface.personInterface;
 
 /**
  * A controller. All calls to the model that are executed because of an action
  * taken by the cashier pass through here.
  */
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 @Stateless
 public class Controller {
-
+    
     @PersistenceContext(unitName = "group12_IV1201Project_war_1.0-SNAPSHOTPU")
     private EntityManager em;
+    
+    
     private Resource res = new Resource();
 
     /**
@@ -91,11 +98,12 @@ public class Controller {
      * @param locale
      * @return
      */
-    public String newAccount(String name, String surname, String username, String password, String ssn, String email, String locale) {
-
+    public String newAccount(String name, String surname, String username, String password, String ssn, String email, String locale) throws NotSupportedException, SystemException {
+     
         res.resourceBundle(locale);
-
+     
         try {
+            
             Account account = em.find(Account.class, username);
 
             if (account == null) {
@@ -105,11 +113,16 @@ public class Controller {
                 person.setRole_id(role);
                 account.setPerson_id(person);
                 em.persist(account);
+               
+                
                 return "success";
             }
         } catch (Exception e) {
+            
+            
             throw new EntityNotFoundException(res.bundle.getString("somethingWrong"));
         }
+        
         return "Not Success";
 
     }

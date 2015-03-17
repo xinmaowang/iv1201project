@@ -111,15 +111,15 @@ public class ClientManager implements Serializable {
 
     /**
      *
-     * @param s
+     * @param person_id
      * @return
      */
-    public String nextArea(Long s) {
+    public String nextArea(Long person_id) {
         try {
             startConversation();
             transactionFailure = null;
             successC = true;
-            uController.nextArea(competence_id, years_of_experience, s);
+            uController.nextArea(competence_id, years_of_experience, person_id);
 
         } catch (Exception e) {
             handleException(e);
