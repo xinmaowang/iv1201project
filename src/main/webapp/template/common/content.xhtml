@@ -103,7 +103,7 @@ and open the template in the editor.
                             <tr>
                                 <td></td>
                                 <td>
-                                    <h:commandButton value ="#{messages.reg}" action ="#{login.newAccount(locale.s)}"/>
+                                    <h:commandButton value ="#{messages.reg}" onclick="return checkData();" action ="#{login.newAccount(locale.s)}"/>
                                 </td>
                             </tr>
                         </table>
@@ -119,11 +119,11 @@ and open the template in the editor.
                     var password = document.getElementById("login:password");
                     
                     if(username.value == ""){
-                        alert("You must enter the username");
+                        alert("#{messages.noUser}");
                         validation = false;
                     }
                     else if(password.value == ""){
-                        alert("You must enter the password");
+                        alert("#{messages.noPass}");
                         validation = false;
                     }
                     
@@ -146,43 +146,43 @@ and open the template in the editor.
                     var usernameReg = /^\w*$/;
                     
                     if (username.value == "") {
-                        alert("You must enter a username");
+                        alert("#{messages.noUser}");
                         validation = false;
                     }
                     else if (!usernameReg.test(username.value)){
-                        alert("Invalid username");
+                        alert("#{messages.invalidUser}");
                         validation = false;
                     }
-                    else if (password.value == "") {
-                        alert("You must enter a password");
+                    else if (password.value == "" ) {
+                        alert("#{messages.noPass}");
                         validation = false;
                     }
                     else if(!passwordReg.test(password.value)){
-                        alert("Invalid password");
+                        alert("#{messages.invalidPass}");
                         validation = false;
                     }
                     else if (ssn.value == "") {
-                        alert("You must enter a ssn");
+                        alert("#{messages.noSsn}");
                         validation = false;
                     }
                     else if (!ssnReg.test(ssn.value)){
-                        alert("Invalid ssn");
+                        alert("#{messages.invalidSsn}");
                         validation = false;
                     }
                     else if (name.value == "") {
-                        alert("You must enter a name");
+                        alert("#{messages.noName}");
                         validation = false;
                     }
                     else if (surname.value == "") {
-                        alert("You must enter a surname");
+                        alert("#{messages.noSur}");
                         validation = false;
                     }
                     else if (email.value == "") {
-                        alert("You must enter a email");
+                        alert("#{messages.noEmail}");
                         validation = false;
                     }
                     else if (!emailReg.test(email.value)){
-                        alert("Invalid email, try again");
+                        alert("#{messages.invalidEmail}");
                         validation = false;
                     }
 

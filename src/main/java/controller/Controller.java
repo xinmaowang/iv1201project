@@ -47,14 +47,14 @@ public class Controller {
 
                 Role role = new Role("user");
                 Account account = new Account("user");
-                Person person = new Person("User", "User", "123456789", "user@user.com", "123", "user");
+                Person person = new Person("User", "User", "123456789", "user@user.com", "123123", "user");
                 person.setRole_id(role);
                 account.setPerson_id(person);
                 em.persist(account);
 
                 role = new Role("admin");
                 account = new Account("admin");
-                person = new Person("Admin", "Admin", "1234567890", "admin@admin.com", "admin", "admin");
+                person = new Person("Admin", "Admin", "1234567890", "admin@admin.com", "admin123", "admin");
                 person.setRole_id(role);
                 account.setPerson_id(person);
                 em.persist(account);
