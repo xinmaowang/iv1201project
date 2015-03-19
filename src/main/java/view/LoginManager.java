@@ -18,7 +18,8 @@ import validation.ValidSsn;
 import validation.ValidUsername;
 
 /**
- *
+ * Denna Managed Bean kommer att sköta inloggning för befintlig användare 
+ * och registrering för nya användare.
  * @author Xinmao
  */
 @Named("login")
@@ -113,7 +114,7 @@ public class LoginManager implements Serializable {
     }
 
     /**
-     *
+     * Inloggning för befintliga användare
      * @param locale
      * @return
      */
@@ -140,7 +141,7 @@ public class LoginManager implements Serializable {
     }
 
     /**
-     *
+     * Registering för nya användare
      * @param locale
      * @return
      */

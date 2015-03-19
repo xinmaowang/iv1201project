@@ -13,7 +13,7 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
 /**
- * The annotated target is checked to be a valid zip code.
+ * Denna klass används för att validera användarnamn
  */
 @Constraint(validatedBy = ValidUsername.UsernameValidator.class)
 @Documented

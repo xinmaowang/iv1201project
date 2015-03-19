@@ -13,7 +13,8 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
 /**
- * The annotated target is checked to be a valid Years of Experience.
+ * Denna klass används för att validera antal år av erfarenhet. Detta får inte 
+ * överstiga 50 år
  */
 @Constraint(validatedBy = ValidYoE.YoEValidator.class)
 @Documented
@@ -39,10 +40,7 @@ public @interface ValidYoE {
                 return false;
             }
             
-            if(value > 50){
-                return false;
-            }
-             return true;
+             return value < 50;
 
         }
 

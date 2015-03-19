@@ -18,7 +18,7 @@ import model.Interface.personInterface;
 import model.Interface.roleInterface;
 
 /**
- *
+ * Denna Managed Bean kommer att sköta utloggning för inloggad användare.
  * @author Xinmao
  */
 @Named("logout")
@@ -46,33 +46,30 @@ public class Logout implements Serializable {
     }
 
     /**
-     *
+     * metoden för utloggning
      * @return
      */
     public String logout() {
-        // Notice the redirect syntax. The forward slash means start at
-        // the root of the web application.
+     
         String destination = "/index?faces-redirect=true";
 
-        // FacesContext provides access to other container managed objects,
-        // such as the HttpServletRequest object, which is needed to perform
-        // the logout operation.
+       
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest request
                 = (HttpServletRequest) context.getExternalContext().getRequest();
 
         try {
-            // added May 12, 2014
+         
             HttpSession session = request.getSession();
             session.invalidate();
 
-            // this does not invalidate the session but does null out the user Principle
+            
             request.logout();
         } catch (ServletException e) {
             destination = "/loginerror?faces-redirect=true";
         }
 
-        return destination; // go to destination
+        return destination; 
     }
 
 }

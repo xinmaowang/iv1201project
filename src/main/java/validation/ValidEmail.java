@@ -14,7 +14,7 @@ import javax.validation.Payload;
 
 
 /**
- * The annotated target is checked to be a valid zip code.
+ * Denna klass används för att validera E-post adress.
  */
 @Constraint(validatedBy = ValidEmail.EmailValidator.class)
 @Documented

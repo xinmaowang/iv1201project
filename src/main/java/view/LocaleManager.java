@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
- * Sets the correct locale for the entire application.
+ * Denna Managed Bean kommer att sköta språket för hela web applikation.
  */
 @Named(value="locale")
 @ApplicationScoped

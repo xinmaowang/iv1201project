@@ -11,7 +11,8 @@ import javax.inject.Named;
 import model.Person;
 
 /**
- *
+ * Denna Managed Bean kommer att sköta alla funtionalitet när en rekryterare har
+ * logga in. T.ex Visa alla sökande, skriva ut infon om en sökande som PDF.
  * @author Xinmao
  */
 @Named("employee")

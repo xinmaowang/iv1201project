@@ -13,7 +13,8 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
 /**
- * The annotated target is checked to be a valid zip code.
+ * Denna klass används för att validera lösenord. Lösenorde måste vara minst
+ * 6 tecken lång.
  */
 @Constraint(validatedBy = ValidPassword.PasswordValidator.class)
 @Documented
@@ -39,8 +40,8 @@ public @interface ValidPassword {
                 return false;
             }
             
-          
-            return true;
+            
+            return value.length() >= 6;
 
         }
 

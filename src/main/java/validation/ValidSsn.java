@@ -13,7 +13,8 @@ import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 
 /**
- * The annotated target is checked to be a valid zip code.
+ * Denna klass används för att validera personnummer. Personnummret måste bestå 
+ * av endast siffror och är 10 tecken lång.
  */
 @Constraint(validatedBy = ValidSsn.SsnValidator.class)
 @Documented

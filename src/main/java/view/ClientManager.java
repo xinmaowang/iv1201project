@@ -19,7 +19,8 @@ import validation.ValidFromDate;
 import validation.ValidYoE;
 
 /**
- *
+ * Denna Managed Bean kommer att sköta om alla funktionalitet när en sökande har
+ * loggat in. T.ex. lägga/ändra in sin kompetens, lediga period m.m
  * @author Xinmao
  */
 @Named("client")
